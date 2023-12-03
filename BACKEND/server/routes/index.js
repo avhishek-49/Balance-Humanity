@@ -1,0 +1,1 @@
+export {default as createAbilty} from "../modules/survival_customer_onboard/methods/create_customer_survival.js"
