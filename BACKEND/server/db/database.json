@@ -1,0 +1,23 @@
+{
+    "development": {
+      "username": "abhishek",
+      "password": "Abishek@876",
+      "database": "testing_database",
+      "host": "172.20.23.22",
+      "dialect": "mysql"
+    },
+    "test": {
+      "username": "root",
+      "password": "password",
+      "database": "cms",
+      "host": "127.0.0.1",
+      "dialect": "mysql"
+    },
+    "production": {
+      "username": "root",
+      "password": "password",
+      "database": "cms",
+      "host": "127.0.0.1",
+      "dialect": "mysql"
+    }
+  }

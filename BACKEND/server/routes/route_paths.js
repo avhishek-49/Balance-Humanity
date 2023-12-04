@@ -1,10 +1,7 @@
-import express from "express";
+const express = require("express");
 const router = express.Router();
-import{createAbilty} from "./index.js";
+const { createAbilty } = require("./index.js");
 
+router.post("/", createAbilty);
 
-
-router.post("/",createAbilty)
-
-
-export default router;
+module.exports = router;

@@ -1,23 +1,22 @@
-import express from "express";
+const express = require("express");
 const app = express();
-import dotenv from 'dotenv'
+const dotenv = require('dotenv');
 dotenv.config();
+let { mysqlHelper }= require("./helpers/index");
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 
-
-//wecome message
-app.get("/",(req,res)=>
-{
-    res.json({message:"Hello, Welcome to Survival application"});
+// Welcome message
+app.get("/", (req, res) => {
+    res.json({ message: "Hello, Balance Humanity" });
 });
 
-
-import mainRoutes from "./routes/route_paths.js"
+const mainRoutes = require("./routes/route_paths.js");
 app.use('/api/survival/v1', mainRoutes);
 
-let PORT = process.env.PORT || 4900
-app.listen(PORT,()=> {
+let PORT = process.env.PORT || 4900;
+app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
-})
+    mysqlHelper.init();
+});
