@@ -20,7 +20,7 @@ const mysql = require('mysql2/promise');
       }
       return dbClient;
     } catch (error) {
-      console.error('Error at mysql.database.helper.js connection.init', error);
+      console.error('Error at databaseHelper connection.init', error);
       throw error;
     }
   };
@@ -30,7 +30,7 @@ const mysql = require('mysql2/promise');
       if (!tranConn) tranConn = await dbClient.getConnection();
       return tranConn;
     } catch (error) {
-      console.error('Error at mysql.database.helper.js connection.getConnection', error);
+      console.error('Error at databaseHelper connection.getConnection', error);
       throw error;
     }
   };
@@ -41,7 +41,7 @@ const mysql = require('mysql2/promise');
       (tranConn || dbClient).query('commit');
       return res;
     } catch (error) {
-      console.error('Error at mysql.database.helper.js connection.query', error);
+      console.error('Error at databaseHelper connection.query', error);
       throw error;
     }
   };
@@ -52,10 +52,20 @@ const mysql = require('mysql2/promise');
       (tranConn || dbClient).query('commit');
       return res;
     } catch (error) {
-      console.error('Error at mysql.database.helper.js connection.query', error);
+      console.error('Error at databaseHelper connection.query', error);
       throw error;
     }
   };
+
+  connection.format = (query, args) => {
+    try {
+      return dbClient.format(query, args);
+    } catch (error) {
+      console.error({}, 'Error at mysql.database.helper.js connection.format', error);
+      throw error;
+    }
+  };
+
 
   // ... (rest of the functions) ...
 

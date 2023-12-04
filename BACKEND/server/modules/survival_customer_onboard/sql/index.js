@@ -1,8 +1,5 @@
-module.exports ={
-    createAbiltySql:require("./create_customer_survival_sql")
-}
 
-
+"use strict";
 module.exports ={
-    createCustomerSql:require("./create_customer_survival_sql")
+    createBalanceHumanitySql:require("./register_balance_humanity_user_sql")
 }

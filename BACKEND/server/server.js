@@ -13,7 +13,7 @@ app.get("/", (req, res) => {
 });
 
 const mainRoutes = require("./routes/route_paths.js");
-app.use('/api/survival/v1', mainRoutes);
+app.use('/api/balance-humanity/v1', mainRoutes);
 
 let PORT = process.env.PORT || 4900;
 app.listen(PORT, () => {

@@ -1,5 +1,5 @@
-
+"use strict";
 
 module.exports ={
-    createAbilty:require("../modules/survival_customer_onboard/methods/create_customer_survival.js")
+    registerBalanceHumanity:require("../modules/survival_customer_onboard/methods/register_balance_humanity_user.js")
 }

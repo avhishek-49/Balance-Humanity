@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const { createAbilty } = require("./index.js");
+const { registerBalanceHumanity } = require("./index.js");
 
-router.post("/", createAbilty);
+router.post("/", registerBalanceHumanity);
 
 module.exports = router;
