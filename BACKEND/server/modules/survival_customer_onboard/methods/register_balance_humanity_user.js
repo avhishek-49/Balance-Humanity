@@ -2,12 +2,9 @@
 const httpStatus = require('http-status');
 const { createBalanceHumanitySql } = require("../sql");
 
-
-
   (() => {
 
     module.exports = async (call,res) => {
-
 
       try {
 
@@ -33,8 +30,6 @@ const { createBalanceHumanitySql } = require("../sql");
         console.error(error);
         res.status(500).json({ error: "Internal Server Error" });
       }
-
-
 
     }
 

@@ -12,8 +12,8 @@ app.get("/", (req, res) => {
     res.json({ message: "Hello, Balance Humanity" });
 });
 
-const mainRoutes = require("./routes/route_paths.js");
-app.use('/api/balance-humanity/v1', mainRoutes);
+const mainRoutes = require("./routes/index.js");
+app.use('/api/v1', mainRoutes);
 
 let PORT = process.env.PORT || 4900;
 app.listen(PORT, () => {
