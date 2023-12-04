@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const dotenv = require('dotenv');
-dotenv.config();
+dotenv.config({path:"./.env"});
 let { mysqlHelper }= require("./helpers/index");
 app.use(express.json());
 

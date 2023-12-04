@@ -1,9 +1,9 @@
 {
     "development": {
-      "username": "abhishek",
-      "password": "Abishek@876",
-      "database": "testing_database",
-      "host": "172.20.23.22",
+      "username": "devdb",
+      "password": "R00t4321#?!",
+      "database": "sagar_test",
+      "host": "172.20.22.20",
       "dialect": "mysql"
     },
     "test": {
@@ -21,3 +21,6 @@
       "dialect": "mysql"
     }
   }
+
+
+

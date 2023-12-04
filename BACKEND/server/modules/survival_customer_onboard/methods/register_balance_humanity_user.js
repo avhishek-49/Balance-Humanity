@@ -15,15 +15,19 @@ const { createBalanceHumanitySql } = require("../sql");
 
         let result = await createBalanceHumanitySql(call.body);
 
-        if (result && result.length > 0) {
-          response =
-          {
-            status: httpStatus.OK, message: "Balance Humanity Registered successfully!"
-          }
+        if(result && result.status == httpStatus.OK)
+        {
+          return res.status(200).json({ message: result.message });
 
         }
 
-        return res.status(response.status).json({ error: response.message });
+        if(result && result.status == httpStatus.BAD_REQUEST)
+        {
+          return res.status(400).json({ message: result.message });
+
+        }
+
+    return res.status(400).json({ error: response.message });
 
       } catch (error) {
         console.error(error);
