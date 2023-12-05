@@ -37,6 +37,10 @@ module.exports = {
         type: DataTypes.STRING(200),
         allowNull: false,
       },
+      customer_pin: {
+        type: DataTypes.STRING(200),
+        allowNull: false,
+      },
       salt: {
         type: DataTypes.STRING(200),
         allowNull: false,

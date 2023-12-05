@@ -24,7 +24,27 @@ module.exports = {
     } catch (err) {
       throw err;
     }
-  }
+  },
+
+  forgotPassword: (call, callback) => {
+    let response = { status: httpStatus.BAD_REQUEST, message: "Validation Failed" };
+    try {
+    if (!call.mobileNumber || !isValidMobileNumber(call.mobileNumber)) {
+        response.message = "Invalid mobileNumber format";
+      } else if (!call.password) {
+        response.message = "password is required";
+      } 
+       else {
+        response.status = httpStatus.OK;
+        response.message = "Validation Success";
+      }
+      return response;
+    } catch (err) {
+      throw err;
+    }
+  },
+
+
 };
 
 function isValidEmail(email) {

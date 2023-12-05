@@ -1,40 +1,30 @@
 "use strict";
 const { mysqlHelper } = require("../../../helpers");
 const httpStatus = require('http-status');
-const { v4 } = require('uuid');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+
 
 (() => {
   module.exports = async (call, res) => {
     try {
-      let response = { status: httpStatus.BAD_REQUEST, message: "Data Not found" }
+        let response = { status: httpStatus.BAD_REQUEST, message: "Data Not found" }
 
-      // Generate a random salt
+        let userExistCheck = await mysqlHelper.format(`select uuid from sagar_test.balance_humanity_users where mobile_number = "${call.mobileNumber}"`)
+        let [userExistCheckResult] = await mysqlHelper.query(userExistCheck)
+
+        if(userExistCheckResult && userExistCheckResult.length <0)
+        {
+            return response = { status: httpStatus.BAD_REQUEST, message: "User Doesnt Exist!" }
+
+        }
+        // Generate a random salt
       const salt = await bcrypt.genSalt(10);
 
       // Combine the password and salt, then hash using bcrypt
       const hashedPassword = await bcrypt.hash(call.password + salt, 10);
 
-      let insertObj = {
-        uuid: v4(),
-        first_name: call.firstName,
-        last_name: call.lastName,
-        email: call.email,
-        mobile_number: call.mobileNumber,
-        password: hashedPassword, // Store the hashed password with salt
-        salt: salt, // Store the salt
-        is_active: 1,
-        is_delete: 0,
-        customer_type: 1,
-        is_blocked: 0,
-        login_date: new Date().getTime(),
-        created_date: new Date().getTime(),
-        created_by: "Abishek",
-        customer_pin:call.customerPin
-      };
-
-      let query = await mysqlHelper.format(`INSERT IGNORE INTO sagar_test.balance_humanity_users SET ?`, [insertObj])
+      let query = await mysqlHelper.format(`update sagar_test.balance_humanity_users set password = "${hashedPassword}" and salt =${salt} where mobile_number = ${call.mobileNumber} `)
       const [result] = await mysqlHelper.query(query);
 
       if (result && result.warningStatus > 0) {
