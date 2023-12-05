@@ -1,6 +1,7 @@
 "use strict";
 const httpStatus = require('http-status');
 const { createBalanceHumanitySql } = require("../sql");
+const { balanceHumanityValidator }= require("./../helpers");
 
   (() => {
 
@@ -9,7 +10,10 @@ const { createBalanceHumanitySql } = require("../sql");
       try {
 
         let response = { status: httpStatus.BAD_REQUEST, message: "Data Not found" }
-
+        response = await balanceHumanityValidator.createUpdateValidator(call.body);
+        if (response.status !== httpStatus.OK) {
+          return res.status(400).json({ message: response.message });
+        }
         let result = await createBalanceHumanitySql(call.body);
 
         if(result && result.status == httpStatus.OK)
