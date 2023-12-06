@@ -9,12 +9,7 @@ const jwt = require('jsonwebtoken');
   module.exports = async (call, res) => {
     try {
       let response = { status: httpStatus.BAD_REQUEST, message: "Data Not found" }
-
-      // Generate a random salt
-      const salt = await bcrypt.genSalt(10);
-
       // Combine the password and salt, then hash using bcrypt
-      const hashedPassword = await bcrypt.hash(call.password + salt, 10);
 
       let insertObj = {
         uuid: v4(),
@@ -22,8 +17,8 @@ const jwt = require('jsonwebtoken');
         last_name: call.lastName,
         email: call.email,
         mobile_number: call.mobileNumber,
-        password: hashedPassword, // Store the hashed password with salt
-        salt: salt, // Store the salt
+        password: await bcrypt.hash(call.password, 10), 
+        salt: "Smudge", // Store the salt
         is_active: 1,
         is_delete: 0,
         customer_type: 1,
@@ -31,7 +26,7 @@ const jwt = require('jsonwebtoken');
         login_date: new Date().getTime(),
         created_date: new Date().getTime(),
         created_by: "Abishek",
-        customer_pin:call.customerPin
+        customer_pin:await bcrypt.hash(call.customerPin, 10)
       };
 
       let query = await mysqlHelper.format(`INSERT IGNORE INTO sagar_test.balance_humanity_users SET ?`, [insertObj])
