@@ -49,7 +49,7 @@ const bcrypt = require('bcrypt');
                 }
 
                 else {
-                    return res.status(401).json({ message: "Invalid Mobile Number or password." });
+                    return res.status(401).json({ message: "Invalid password." });
 
                 }
 
