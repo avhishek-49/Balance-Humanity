@@ -13,6 +13,7 @@ app.get("/", (req, res) => {
 });
 
 const mainRoutes = require("./routes/index.js");
+//change end points name..... //todo
 app.use('/api/v1', mainRoutes);
 
 let PORT = process.env.PORT || 4900;
