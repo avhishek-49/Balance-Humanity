@@ -14,52 +14,48 @@ const bcrypt = require('bcrypt');
       if (!userExistCheckResult || userExistCheckResult.length === 0) {
         return response = { status: httpStatus.BAD_REQUEST, message: "User Doesn't Exist!" }
       }
-    
-      if(userExistCheckResult && userExistCheckResult.length > 0)
-      {
+
+      if (userExistCheckResult && userExistCheckResult.length > 0) {
         const match = await bcrypt.compare(call.customerPin, userExistCheckResult[0].customer_pin);
 
-        if(match)
-        {
+        if (match) {
 
           const oldPasswordCheck = await bcrypt.compare(call.password, userExistCheckResult[0].password);
 
-          if(oldPasswordCheck == true)
-          {
+          if (oldPasswordCheck == true) {
             return response = { status: httpStatus.BAD_REQUEST, message: "old password matched! use new password..." }
           }
-  
+
           let newPassword = await bcrypt.hash(call.password, 10);
           let updateQuery = await mysqlHelper.format(`Update sagar_test.balance_humanity_users set password = "${newPassword}"  WHERE mobile_number = "${call.mobileNumber}" `);
           let [executeUpdateQuery] = await mysqlHelper.query(updateQuery);
 
-          if(executeUpdateQuery && executeUpdateQuery.affectedRows > 0)
-          {
+          if (executeUpdateQuery && executeUpdateQuery.affectedRows > 0) {
             return response = { status: httpStatus.OK, message: "Password Reset Success!" }
 
           }
 
-  
-  
+
+
         }
-  
-        else{
-          return response = {status:httpStatus.BAD_REQUEST,message:"Invalid customer pin!"}
+
+        else {
+          return response = { status: httpStatus.BAD_REQUEST, message: "Invalid customer pin!" }
         }
-  
+
 
       }
 
-   
 
 
-  
 
 
-    
+
+
+
     } catch (error) {
       console.error(error);
-      return res.status(500).json({ error: error});
+      return res.status(500).json({ error: error });
     }
   }
 })();
