@@ -1,132 +1,79 @@
-import { useState } from 'react';
-import './App.css';
+// src/components/RegisterForm.jsx
+import React from 'react';
+import './App.css'; // You'll need to create this CSS file
+import {FaUser} from "react-icons/fa"
 
-function App() {
-
-
-    // State to store form values
-    const [formData, setFormData] = useState({
-      firstName: '',
-      lastName: '',
-      email: '',
-      mobileNumber: '',
-      password: '',
-      customerPin: '',
-    });
-
-
-    // Handle form input changes
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
-  };
-
-  // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // You can handle form submission logic here
-    console.log('Form submitted:', formData);
-    // Add your logic to send data to the server, etc.
-  };
-  
-
+const App = () => {
   return (
-    <>
-      <section className="nav">
-        
-    
-          <a className="homeNavBar" href="#tab-svelte">
-            Home
-          </a>
-          <a className="profileNavBar" href="#tab-esbuild">
-            contact us
-          </a>
 
-          <a className="locationNavBar" href="#tab-esbuild">
-           location
-          </a>
-        
-        
-          <span className="nav-tab-slider"></span>
 
-      </section>
-
-        {/* Signup form */}
-        <div className="signup-container">
-          <h2>Sign Up</h2>
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="firstName">First Name</label>
-            <input
-              type="text"
-              id="firstName"
-              name="firstName"
-              value={formData.firstName}
-              onChange={handleChange}
-              required
-            />
-
-            <label htmlFor="lastName">Last Name</label>
-            <input
-              type="text"
-              id="lastName"
-              name="lastName"
-              value={formData.lastName}
-              onChange={handleChange}
-              required
-            />
-
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-
-            <label htmlFor="mobileNumber">Mobile Number</label>
-            <input
-              type="tel"
-              id="mobileNumber"
-              name="mobileNumber"
-              value={formData.mobileNumber}
-              onChange={handleChange}
-              required
-            />
-
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-            />
-
-            <label htmlFor="customerPin">Customer Pin</label>
-            <input
-              type="text"
-              id="customerPin"
-              name="customerPin"
-              value={formData.customerPin}
-              onChange={handleChange}
-              required
-            />
-
-            <button type="submit">Sign Up</button>
-          </form>
+    <div className="container">
+      <div className="content">
+        <div className="logo"> Balance Humaity
         </div>
-  
+
+        <div className="image"></div>
+
+        <div className="text">
+          Start for free & get regret<br />
+        </div>
+      </div>
+
+      <form id="form">
+
+        <div className="title">Login</div>
+
+        {/* User Name input */}
+        <div>
+          <label htmlFor="username">User Name</label>
+          {/* <i className="fas fa-user"></i>
+           */}
+                     <FaUser size={20} className='userIconClass'></FaUser>
 
 
+          <input type="text" name="username" id="username" placeholder="Abishek Paudel" />
 
-     
+          <i className="fas fa-exclamation-circle failure-icon"></i>
+          <i className="far fa-check-circle success-icon"></i>
 
-      <canvas className="background"></canvas>
-    </>
+          <div className="error"></div>
+        </div>
+
+        {/* Email input */}
+        {/* <div>
+          <label htmlFor="email">Email</label>
+          <i className="far fa-envelope"></i>
+
+          <input type="email" name="email" id="email" placeholder="abishek@yopmail.com" />
+
+          <i className="fas fa-exclamation-circle failure-icon"></i>
+          <i className="far fa-check-circle success-icon"></i>
+
+          <div className="error"></div>
+        </div> */}
+
+        {/* Password input */}
+        <div>
+          <label htmlFor="password">Password</label>
+          <i className="fas fa-lock"></i>
+
+          <input type="password" name="password" id="password" placeholder="Password here" />
+
+          <i className="fas fa-exclamation-circle failure-icon"></i>
+          <i className="far fa-check-circle success-icon"></i>
+
+          <div className="error"></div>
+        </div>
+
+        <button id="btn" type="submit">
+          Submit
+        </button>
+
+
+        <button > Sign Up</button>
+      </form>
+    </div>
   );
-}
+};
 
 export default App;
