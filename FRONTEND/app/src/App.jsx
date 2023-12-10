@@ -1,15 +1,22 @@
 // src/components/RegisterForm.jsx
 import React from 'react';
 import './App.css'; // You'll need to create this CSS file
-import {FaUser} from "react-icons/fa"
+import { FaUser, FaLock } from "react-icons/fa"
+import { useNavigate } from 'react-router-dom';
 
 const App = () => {
+  const navigate = useNavigate()
+
+  function navigateToHome() {
+    navigate("home")
+  }
+
   return (
 
 
     <div className="container">
       <div className="content">
-        <div className="logo"> Balance Humaity
+        <div className="logo"> Balance Humanity
         </div>
 
         <div className="image"></div>
@@ -28,7 +35,7 @@ const App = () => {
           <label htmlFor="username">User Name</label>
           {/* <i className="fas fa-user"></i>
            */}
-                     <FaUser size={20} className='userIconClass'></FaUser>
+          <FaUser size={20} className='userIconClass'></FaUser>
 
 
           <input type="text" name="username" id="username" placeholder="Abishek Paudel" />
@@ -55,8 +62,8 @@ const App = () => {
         {/* Password input */}
         <div>
           <label htmlFor="password">Password</label>
-          <i className="fas fa-lock"></i>
 
+          <FaLock className='userIconClass' size={20} />
           <input type="password" name="password" id="password" placeholder="Password here" />
 
           <i className="fas fa-exclamation-circle failure-icon"></i>
@@ -70,7 +77,7 @@ const App = () => {
         </button>
 
 
-        <button > Sign Up</button>
+        <button onClick={navigateToHome}> Sign Up</button>
       </form>
     </div>
   );
