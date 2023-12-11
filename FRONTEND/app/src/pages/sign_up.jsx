@@ -8,7 +8,7 @@ const SignUpApplication = () => {
   const navigate = useNavigate()
 
   function navigateToHome() {
-    navigate("home")
+    navigate("/")
   }
 
   return (
@@ -36,6 +36,7 @@ const SignUpApplication = () => {
         <div>
           <label htmlFor="firstName">First Name</label>
           <i className="far fa-envelope"></i>
+          <FaUser size={20} className='userIconClass'></FaUser>
 
           <input type="FirstName" name="FirstName" id="FirstName"  />
 
@@ -48,6 +49,7 @@ const SignUpApplication = () => {
         <div>
           <label htmlFor="LastName">Last Name</label>
           <i className="far fa-envelope"></i>
+          <FaUser size={20} className='userIconClass'></FaUser>
 
           <input type="LastName" name="LastName" id="LastName"  />
 
@@ -62,7 +64,6 @@ const SignUpApplication = () => {
           <label htmlFor="MobileNumber">Mobile Number</label>
           {/* <i className="fas fa-user"></i>
            */}
-          <FaUser size={20} className='userIconClass'></FaUser>
 
 
           <input type="text" name="mobileNumber" id="username" placeholder="98XXXXXXXX" />
@@ -77,7 +78,6 @@ const SignUpApplication = () => {
           <label htmlFor="customerPin">Customer Pin</label>
           {/* <i className="fas fa-user"></i>
            */}
-          <FaUser size={20} className='userIconClass'></FaUser>
 
 
           <input type="password" name="customerPin" id="customerPin" placeholder="XXXX" />
@@ -122,7 +122,7 @@ const SignUpApplication = () => {
         </button>
 
 
-        <button onClick={navigateToHome}> Login</button>
+        <button onClick={navigateToHome}> Already Have Account</button>
       </form>
     </div>
   );
