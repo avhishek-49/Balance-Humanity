@@ -7,4 +7,8 @@ const router = express.Router();
 const unboarding = require("./balance_humanity_unboard/route");
 router.use('/customer', unboarding);
 
+
+//image functionalities
+const image = require("./minio_image/route.js");
+router.use('/image', image);
 module.exports = router;

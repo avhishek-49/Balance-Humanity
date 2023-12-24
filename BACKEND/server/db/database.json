@@ -1,9 +1,9 @@
 {
     "development": {
-      "username": "devdb",
-      "password": "R00t4321#?!",
-      "database": "sagar_test",
-      "host": "172.20.22.20",
+      "username": "root",
+      "password": "1234",
+      "database": "db_balance_humanity",
+      "host": "localhost",
       "dialect": "mysql"
     },
     "test": {
