@@ -3,6 +3,7 @@ const app = express();
 const dotenv = require('dotenv');
 dotenv.config({path:"./.env"});
 let { mysqlHelper }= require("./helpers/index");
+let  minioHelper = require("./helpers/minio_helper.js")
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
@@ -20,4 +21,5 @@ let PORT = process.env.PORT || 4900;
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
     mysqlHelper.init();
+    minioHelper.init()
 });

@@ -4,7 +4,6 @@
   const Minio = require('minio');
   const Promise = require('bluebird');
   const axios = require('axios').default;
-  const minioConstants = require('service_config/minio_constants');
   let minioClient;
   minioHelper.getInstance = () => {
     return minioClient;
@@ -31,7 +30,7 @@
   minioHelper.objectStatus = (bucket, objectName)=>{
     return new Promise((resolve, reject)=>{
 
-      try {
+      try {     
         minioClient.statObject(bucket, objectName, function(err, stat){
           if(err){
             resolve(err)
@@ -227,25 +226,25 @@
       }
     })
   };
-  //
-  minioHelper.presignedGetObject = (bucketName, object, expires) => {
-    return new Promise((resolve, reject) => {
-      try {
-        minioClient.presignedGetObject(bucketName, object, expires, (err, presignedUrl) => {
-          if (err) {
-            return resolve({
-              status: false,
-              message: 'Error on Object Fetching'
-            });
-          }
-          // console.log(presignedUrl)
-          return presignedUrl;
-        })
-      } catch (error) {
-        return reject(error)
-      }
-    })
-  };
+  
+  // minioHelper.presignedGetObject = (bucketName, object, expires) => {
+  //   return new Promise((resolve, reject) => {
+  //     try {
+  //       minioClient.presignedGetObject(bucketName, object, expires, (err, presignedUrl) => {
+  //         if (err) {
+  //           return resolve({
+  //             status: false,
+  //             message: 'Error on Object Fetching'
+  //           });
+  //         }
+  //         // console.log(presignedUrl)
+  //         return presignedUrl;
+  //       })
+  //     } catch (error) {
+  //       return reject(error)
+  //     }
+  //   })
+  // };
 
   minioHelper.detectMimeType = (base64file) => {
     // console.log(base64file)
