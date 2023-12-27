@@ -21,7 +21,7 @@
       'Connected to Minio...',
       {
         endPoint: process.env.MINIO_HOST,
-        port: 9000
+        port: parseInt(process.env.MINIO_PORT)
       }
     );
     return minioClient;
@@ -204,7 +204,7 @@
     })
     return image.data;
   }
-
+  
   // put metadata of object in minio
   minioHelper.fPutObject = (bucketName, object) => {
     return new Promise((resolve, reject) => {
