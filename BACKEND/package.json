@@ -33,6 +33,7 @@
     "multer": "^1.4.5-lts.1",
     "mysql": "^2.18.1",
     "mysql2": "^3.6.5",
+    "nodemailer": "^6.9.7",
     "sequelize": "^6.35.1",
     "uuid": "^9.0.1",
     "uuidv4": "^6.2.13"
