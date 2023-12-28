@@ -168,11 +168,11 @@
   minioHelper.listObjects = (bucketName, prefix) => {
     return new Promise((resolve, reject) => {
       try {
-        var data = []
-        var stream = minioClient.listObjects(bucketName, prefix)
+        let data = []
+        let stream = minioClient.listObjects(bucketName, prefix) 
         stream.on('data', function (obj) { data.push(obj) })
         stream.on('end', function () {
-          if (data.length > 1) {
+          if (data.length >= 1) {
             // if (data[0].name == process.env.LOGO && data[1].name == process.env.WATERMARK) {
             return resolve({
               status: 200,
@@ -284,7 +284,7 @@
 })(module.exports);
 // hint for image upload in minio
 // const file = fs.readFileSync('/home/manoj/bfi-tech/backend/common/mcs-common-service-node/server/assets/Global_IME_logo.png')
-//   var metaData = {
+//   let metaData = {
 //        'Content-Type': 'image/png',
 //      }
 //   minioHelper.putObject('globalstore', 'gbme.png', file, metaData ).then(message => console.log(message));

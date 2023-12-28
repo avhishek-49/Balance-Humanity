@@ -26,7 +26,10 @@ module.exports = {
         type: DataTypes.STRING(50),
         allowNull: false,
       },
-      
+      image_type:{
+        type: DataTypes.STRING(30),
+        allowNull:false,
+      },
       image_name: {
         type: DataTypes.STRING(50),
         allowNull: false,

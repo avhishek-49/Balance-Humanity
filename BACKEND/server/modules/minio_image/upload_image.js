@@ -32,9 +32,10 @@ if(putIntoBucket.status){
     if(customerBucket.status == 200)
     {
         request.body.image_name = image.originalname;
+        request.body.image_type = req.body.image_type;
         let bucketImageList = await createBucketImageList(request);
         if(bucketImageList.status == 200){
-            return res.status(200).json({bucketImageList:bucketImageList,putIntoBucket:putIntoBucket})
+            return res.status(200).json({bucketImageList:bucketImageList,putIntoBucket:putIntoBucket})  
         }
         return res.status(400).json({message: "Could not update the bucket image list"});
     }
