@@ -13,10 +13,11 @@ const { v4 } = require('uuid');
       let insertObj = {
         uuid: v4(),
         customer_id: call.customer_id,
+        image_name:call.image_name,
         bucket_name:call.bucket_name
       };
 
-      let query = await mysqlHelper.format(`INSERT IGNORE INTO customer_bucket SET ?`, [insertObj])
+      let query = await mysqlHelper.format(`INSERT IGNORE INTO bucket_list_object SET ?`, [insertObj])
       const [result] = await mysqlHelper.query(query);
 
       if (result && result.warningStatus > 0) {
@@ -24,9 +25,10 @@ const { v4 } = require('uuid');
       }
 
       if (result && result.affectedRows > 0) {
-        return response = { status: httpStatus.OK, message: "customer_bucket successfully made a bucket",}
+        return response = { status: httpStatus.OK, message: "bucket image relation successfully matched"}
       }
-    } catch (error) { 
+    } catch (error) {
+      
       return error
     }
   }

@@ -15,13 +15,18 @@ module.exports = {
         allowNull: false,
         unique: true
       },
-      bucket_id: {
+      customer_id: {
         type: DataTypes.INTEGER(100),
         allowNull: false,
         references:{
-          model:"customer_bucket",keys:"id"
+          model:"balance_humanity_users",keys:"id"
         }
       },
+      bucket_name: {
+        type: DataTypes.STRING(50),
+        allowNull: false,
+      },
+      
       image_name: {
         type: DataTypes.STRING(50),
         allowNull: false,
@@ -29,10 +34,10 @@ module.exports = {
   }).then(()=>{
     queryInterface.addConstraint('bucket_list_object',{
       type:'FOREIGN KEY',
-      fields:["bucket_id"],
+      fields:["customer_id"],
       references:{
         field:"id",
-        table:"customer_bucket"
+        table:"balance_humanity_users"
       }
     })
   })

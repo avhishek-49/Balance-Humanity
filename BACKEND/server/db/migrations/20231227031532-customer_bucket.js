@@ -20,11 +20,13 @@ module.exports = {
         allowNull: false,
         references:{
           model:"balance_humanity_users",keys:"id"
-        }
+        },
+        unique:true,
       },
       bucket_name: {
         type: DataTypes.STRING(50),
         allowNull: false,
+        unique: true,
       }
   }).then(()=>{
     queryInterface.addConstraint('customer_bucket',{
