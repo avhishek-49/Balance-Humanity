@@ -52,25 +52,25 @@
         minioClient.bucketExists(bucketName, (err, exists) => {
           if (err) {
             return resolve({
-              status: false,
+              status: 400,
               message: err
             });
           } else if (!exists) {
             minioClient.makeBucket(bucketName, err => {
               if (err) {
                 return resolve({
-                  status: false,
+                  status: 400,
                   message: 'Error on Bucket Creating'
                 });
               }
               return resolve({
-                status: true,
+                status: 200,
                 message: 'Bucket Created'
               });
             })
           } else {
             return resolve({
-              status: true,
+              status: 200,
               message: 'Bucket Available'
             });
           }
@@ -87,12 +87,12 @@
         minioClient.makeBucket(bucketName, err => {
           if (err) {
             return resolve({
-              status: false,
+              status: 400,
               message: 'Error on Bucket Creating'
             });
           }
           return resolve({
-            status: true,
+            status: 200,
             message: 'Bucket Created'
           });
         })
@@ -108,12 +108,12 @@
         minioClient.removeBucket(bucketName, err => {
           if (err) {
             return resolve({
-              status: false,
+              status: 400,
               message: 'Error on Bucket Removing'
             });
           }
           return resolve({
-            status: true,
+            status: 200,
             message: 'Bucket Removed'
           });
         })
@@ -129,12 +129,12 @@
         minioClient.putObject(bucketName, logogbime, file, metaData, err => {
           if (err) {
             return resolve({
-              status: false,
+              status: 400,
               message: 'Error on Object Store'
             });
           }
           return resolve({
-            status: true,
+            status: 200,
             message: 'Object Stored Successfully'
           });
         })
@@ -150,12 +150,12 @@
         minioClient.removeObject(bucketName, object, err => {
           if (err) {
             return resolve({
-              status: false,
+              status: 400,
               message: 'Error on Object Removing'
             });
           }
           return resolve({
-            status: true,
+            status: 200,
             message: 'Object Removed Successfully'
           });
         })
@@ -175,19 +175,19 @@
           if (data.length > 1) {
             // if (data[0].name == process.env.LOGO && data[1].name == process.env.WATERMARK) {
             return resolve({
-              status: true,
+              status: 200,
               message: 'objects found'
             });
             // }
           }
           return resolve({
-            status: false,
+            status: 400,
             message: 'object not found'
           });
         })
         stream.on('error', function (err) {
           return resolve({
-            status: true,
+            status: 200,
             message: err
           });
         })
@@ -212,12 +212,12 @@
         minioClient.fPutObject(bucketName, object, err => {
           if (err) {
             return resolve({
-              status: false,
+              status: 400,
               message: 'Error on Object Fetching'
             });
           }
           return resolve({
-            status: true,
+            status: 200,
             message: 'Object Fetched Successfully'
           });
         })
@@ -233,7 +233,7 @@
   //       minioClient.presignedGetObject(bucketName, object, expires, (err, presignedUrl) => {
   //         if (err) {
   //           return resolve({
-  //             status: false,
+  //             status: 400,
   //             message: 'Error on Object Fetching'
   //           });
   //         }
