@@ -45,7 +45,7 @@ if(getObjectFromBucketName.status==200){
 
         const b64 = new Buffer(image).toString('base64');
         const mimeType ='image/png'
-        return res.setHeader('contentType','image/jpg').send(`data:${mimeType};base64,${b64}`);
+        return res.setHeader('contentType','image/png').json({photo:`${b64}`,mimeType:`${mimeType}`});
         // res.setHeader('contentType','image/jpg').send(img) 
 
     }
