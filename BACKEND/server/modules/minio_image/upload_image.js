@@ -15,7 +15,7 @@ if(!bucketExists.status){
 }
 
 let metaData = {
-    'Content-Type': 'application/octet-stream'
+    'Content-Type': 'image/png'
   }
 
 try {

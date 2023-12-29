@@ -227,24 +227,24 @@
     })
   };
   
-  // minioHelper.presignedGetObject = (bucketName, object, expires) => {
-  //   return new Promise((resolve, reject) => {
-  //     try {
-  //       minioClient.presignedGetObject(bucketName, object, expires, (err, presignedUrl) => {
-  //         if (err) {
-  //           return resolve({
-  //             status: 400,
-  //             message: 'Error on Object Fetching'
-  //           });
-  //         }
-  //         // console.log(presignedUrl)
-  //         return presignedUrl;
-  //       })
-  //     } catch (error) {
-  //       return reject(error)
-  //     }
-  //   })
-  // };
+  minioHelper.presignedGetObject = (bucketName, object, expires) => {
+    return new Promise((resolve, reject) => {
+      try {
+        minioClient.presignedGetObject(bucketName, object, expires, (err, presignedUrl) => {
+          if (err) {
+            return resolve({
+              status: 400,
+              message: 'Error on Object Fetching'
+            });
+          }
+          // console.log(presignedUrl)
+          return resolve(presignedUrl);
+        })
+      } catch (error) {
+        return reject(error)
+      }
+    })
+  };
 
   minioHelper.detectMimeType = (base64file) => {
     // console.log(base64file)
@@ -267,7 +267,8 @@
       return {error: objectStatus.code};
     }
     return new Promise((resolve, reject)=>{
-      let urlExpiresIn = minioConstants.PRESIGNED_URL_EXPIRES_IN;
+      let urlExpiresIn = parseInt(process.env.PRESIGNED_URL_EXPIRES_IN);
+
       try{
         minioClient.presignedUrl('GET', bucket, object, urlExpiresIn, function(err, presignedUrl){
           if(err){
