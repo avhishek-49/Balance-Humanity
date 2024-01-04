@@ -4,4 +4,4 @@ package-lock.json
 logger
 .vscode
 /test.js
-upload
+uploads
