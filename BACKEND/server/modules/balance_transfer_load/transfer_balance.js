@@ -14,7 +14,7 @@ let request_payload = JSON.stringify(req.body)
         url : 'http://localhost:8090/api/v1/balance/transfer',
         header:{
             'Content-Type':'application/json',
-            'authorization':req.headers.authorization
+            // 'authorization':req.headers.authorization
         },
         data:{
            token:  base64encode
