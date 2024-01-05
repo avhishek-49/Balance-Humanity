@@ -8,14 +8,31 @@
     const dotenv = require("dotenv");
      dotenv.config();
   
-    jwtTokenGeneratorHelper.generateJWTToken = (userId, expiryTime) => {
+    jwtTokenGeneratorHelper.generateJWTAccessToken = (userId, expiryTime) => {
       const token = jwt.sign(
         {
           user: userId,      },
-          "testotkensert",
+          process.env.ACCESS_TOKEN_SECRET_KEY,
         {
-          algorithm: "HS512",
-          expiresIn: "72h", // expires in given hours
+          algorithm: process.env.AUTH_HASH_ALGORITHM,
+          expiresIn: "7h", // expires in given hours
+        }
+      );
+      return {
+        success: true,
+        token: token,
+        userInfo: userId,
+      };
+    };
+
+    jwtTokenGeneratorHelper.generateJWTRefreshToken = (userId, expiryTime) => {
+      const token = jwt.sign(
+        {
+          user: userId,      },
+          process.env.ACCESS_TOKEN_SECRET_KEY,
+        {
+          algorithm: process.env.AUTH_HASH_ALGORITHM,
+          expiresIn: "10d", // expires in given hours
         }
       );
       return {
@@ -26,12 +43,11 @@
     };
 
 
-
   
-    jwtTokenGeneratorHelper.verifyJWTToken = (token) => {
+    jwtTokenGeneratorHelper.verifyJWTToken = (token,key) => {
       try {
         return new Promise((resolve, reject) => {
-          jwt.verify(token, process.env.TOKEN_SECRET, { algorithm: process.env.AUTH_HASH_ALGORITHM }, (err, decoded) => {
+          jwt.verify(token, key, { algorithm: process.env.AUTH_HASH_ALGORITHM }, (err, decoded) => {
             if (err) {
               return resolve({ success: false, message: err.name });
             }

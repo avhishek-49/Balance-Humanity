@@ -8,6 +8,8 @@ const {registerBalanceHumanity, forgotPassword , login } = require("./index");
 router.post('/login',login);
 router.post('/register', registerBalanceHumanity);
 router.post('/forgot-password', forgotPassword);
+router.get('/get-customer', forgotPassword);
+
 
 module.exports = router;
 
