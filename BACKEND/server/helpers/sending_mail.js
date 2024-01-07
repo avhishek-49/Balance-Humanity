@@ -1,50 +1,43 @@
 "use strict";
-let nodemailer= require('nodemailer')
+let nodemailer = require("nodemailer");
 // let setValues = require("./redis_helper_new");
 
 const host = process.env.SMTPHOST;
 const port = process.env.SMTPPORT;
 const service = process.env.SMTPSERVICE;
-   ((sendingMail)=>{
+(sendingMail => {
+    sendingMail.send = async message => {
+        const transporter = nodemailer.createTransport({
+            host: host,
+            port: port,
+            secure: false,
+            service: service,
+            auth: {
+                user: process.env.USEREMAIL,
+                pass: process.env.PASSWORD,
+            },
+        });
+        await transporter.sendMail({
+            to: message.email, //receiver email
+            subject: message.subject, // Subject line
+            text: message.details.message + ` ${message.details.value} `, // value is OTP
+        });
 
-    sendingMail.send= async(message)=>{
-      const transporter =  nodemailer.createTransport({
-        host: host,
-        port: port,
-        secure: false,
-        service: service,
-        auth: {
-          user: process.env.USEREMAIL,
-          pass: process.env.PASSWORD,
-      
-        },
-      });
-      await transporter.sendMail({
-        to: message.email, //receiver email
-        subject: message.subject, // Subject line
-        text: message.details.message + ` ${message.details.value} ` // value is OTP 
-      });
-      
-    
-    if(message.type == 'OTP'){
-      return {
-      status: true,
-      OTP: message.details.value
+        if (message.type == "OTP") {
+            return {
+                status: true,
+                OTP: message.details.value,
+            };
+        }
+
+        return {
+            status: false,
+            value: "UnsuccessFul",
+        };
     };
-    }
-    
-    return  {
-      status: false,
-      value: 'UnsuccessFul'
-    };
-    
-      }
-    
-    
-   })(module.exports)
+})(module.exports);
 
-
-  /*
+/*
  // to be passed message format
 
   const message = {
@@ -61,9 +54,4 @@ const service = process.env.SMTPSERVICE;
   
   
   
-  */ 
-
-  
-  
-  
-  
+  */

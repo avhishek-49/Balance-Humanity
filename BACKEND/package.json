@@ -7,6 +7,8 @@
   "scripts": {
     "test": "jest --watchAll --coverage test/modules/index.test.js",
     "start": "node server/server.js",
+    "pretty": "prettier --write \"server/**/*.js\"",
+    "lint": "eslint server/**/*.js",
     "generate:migration": "npx sequelize-cli migration:generate --name",
     "migrate": "npx sequelize-cli db:migrate",
     "migrate:pre": "node server/scripts/create_database.js",
@@ -42,6 +44,10 @@
     "uuidv4": "^6.2.13"
   },
   "devDependencies": {
-    "husky": "^8.0.3"
+    "eslint": "^8.56.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-react": "^7.33.2",
+    "husky": "^8.0.3",
+    "prettier": "^3.1.1"
   }
 }

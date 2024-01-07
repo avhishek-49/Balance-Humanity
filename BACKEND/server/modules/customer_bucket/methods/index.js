@@ -1,6 +1,5 @@
-
 "use strict";
-module.exports ={
-    createCustomerBucket:require("./create.js"),
-    readCustomerBucket:require("./read.js"),
-}
+module.exports = {
+    createCustomerBucket: require("./create.js"),
+    readCustomerBucket: require("./read.js"),
+};

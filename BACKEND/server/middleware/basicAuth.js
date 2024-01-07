@@ -1,21 +1,18 @@
 "use strict";
 
-    exports.auth_user =  async(req,res,next)=>{
+exports.auth_user = async (req, res, next) => {
+    let authheader = req.headers.authorization;
 
-        let authheader = req.headers.authorization;
-
-        if(!authheader){
-            return res.status(400).send("Provide authorization to begin further")
-        }
-        const auth = new Buffer.from(authheader.split(' ')[1],
-        'base64').toString().split(':');
+    if (!authheader) {
+        return res.status(400).send("Provide authorization to begin further");
+    }
+    const auth = new Buffer.from(authheader.split(" ")[1], "base64").toString().split(":");
     const user = auth[0];
     const pass = auth[1];
 
-    if(user==process.env.USERNAME && pass == process.env.PASSWORD){
-        return next()
+    if (user == process.env.USERNAME && pass == process.env.PASSWORD) {
+        return next();
     }
 
-return res.status(400).send('Not a valid username or password')
-    }
-
+    return res.status(400).send("Not a valid username or password");
+};
