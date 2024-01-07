@@ -1,19 +1,15 @@
 "use strict";
 const httpStatus = require('http-status');
-const { getCustomerInfoSql } = require("../sql");
-
+const { createCustomerKycSql } = require("../sql");
 
 (() => {
 
-  module.exports = async (req, res) => {
+  module.exports = async (call, res) => {
 
     try {
 
-      let response = { status: httpStatus.BAD_REQUEST, message: "Data Not found" }
-
-   
-
-      let result = await getCustomerInfoSql(req.query);
+      
+      let result = await createCustomerKycSql(call.body);
 
       if (result && result.status == httpStatus.OK) {
         return res.status(200).json({ message: result.message });

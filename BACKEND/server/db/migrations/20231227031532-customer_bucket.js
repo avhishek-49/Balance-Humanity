@@ -19,7 +19,7 @@ module.exports = {
         type: DataTypes.INTEGER(100),
         allowNull: false,
         references:{
-          model:"balance_humanity_users",keys:"id"
+          model:"balance_humanity_users",keys:"uuid"
         },
         unique:true,
       },
@@ -33,7 +33,7 @@ module.exports = {
       type:'FOREIGN KEY',
       fields:["customer_id"],
       references:{
-        field:"id",
+        field:"uuid",
         table:"balance_humanity_users"
       }
     })

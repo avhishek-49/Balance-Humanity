@@ -13,21 +13,16 @@ try {
 
 
     let basequery = 
-    `SELECT uuid, customer_pin, password,email,mobile_number,
-    case when customer_type= 1 then "NormalCustomer"
-    when customer_type = 2 then "VictimCustomer"
-    when customer_type = 3 then "superCustomer" 
-    end as customer_type 
-
-
-     FROM db_balance_humanity.balance_humanity_users WHERE true `
+    `SELECT uuid, address, citizenship_number, relationship, mobile_number, description_of_victim, account_number,account_name,status
+    
+    FROM db_balance_humanity.balance_humanity_kyc WHERE true `
 
 let paramsQuery = ""
 
 
-     if(call.mobile_number)
+     if(call.mobile_number )
      {
-        let mobile = call.mobile_number
+        let mobile  = parseInt(call.mobile_number)
         paramsQuery = mysqlHelper.format(`AND mobile_number like '%${mobile}%' `)
      }  
 

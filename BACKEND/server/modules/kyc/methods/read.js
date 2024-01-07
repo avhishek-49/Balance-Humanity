@@ -1,6 +1,6 @@
 "use strict";
 const httpStatus = require('http-status');
-const { getCustomerInfoSql } = require("../sql");
+const { getCustomerInfoForKycSql } = require("../sql");
 
 
 (() => {
@@ -13,7 +13,7 @@ const { getCustomerInfoSql } = require("../sql");
 
    
 
-      let result = await getCustomerInfoSql(req.query);
+      let result = await getCustomerInfoForKycSql(req.query);
 
       if (result && result.status == httpStatus.OK) {
         return res.status(200).json({ message: result.message });
