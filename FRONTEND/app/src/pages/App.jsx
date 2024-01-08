@@ -3,7 +3,6 @@ import React from 'react';
 import './App.css'; // You'll need to create this CSS file
 import { FaUser, FaLock } from "react-icons/fa"
 import { useNavigate } from 'react-router-dom';
-
 const App = () => {
   const navigate = useNavigate()
 
