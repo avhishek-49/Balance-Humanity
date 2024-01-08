@@ -15,13 +15,10 @@ const {v4} = require("uuid");
                 bucket_name: call.bucket_name,
             };
 
-            let query = await mysqlHelper.format(`INSERT IGNORE INTO customer_bucket SET ?`, [insertObj]);
+            let query = await mysqlHelper.format(`INSERT INTO sagar_test.customer_bucket SET ?`, [insertObj]);
             const [result] = await mysqlHelper.query(query);
 
-            if (result && result.warningStatus > 0) {
-                return (response = {status: httpStatus.OK, message: "Duplicate Data entry!"});
-            }
-
+          
             if (result && result.affectedRows > 0) {
                 return (response = {status: httpStatus.OK, message: "customer_bucket successfully made a bucket"});
             }

@@ -22,6 +22,6 @@ let PORT = process.env.PORT || 4900;
 app.listen(PORT, async () => {
     console.log(`Server is running on http://localhost:${PORT}`);
     await mysqlHelper.init();
-    // await minioHelper.init();
+    await minioHelper.init();
     await redisInit();
 });

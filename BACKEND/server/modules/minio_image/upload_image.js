@@ -5,7 +5,7 @@ const {createBucketImageList} = require("../bucket_list_object/methods");
 
 let uploadImage = async (req, res) => {
     // let bucketName = process.env.BUCKET_NAME;
-    let bucketName = req.body.bucketName;
+    let bucketName = req.body.bucketName.toLowerCase();
 
     let image = req.file;
     let bucketExists = await minioHelper.bucketExists(bucketName);

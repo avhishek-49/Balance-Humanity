@@ -64,7 +64,7 @@
                         data: data,
                     });
                 }
-                return resolve({
+                return reject({
                     status: HTTPStatus.NOT_FOUND,
                     data: null,
                 });

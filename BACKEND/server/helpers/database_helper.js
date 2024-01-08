@@ -1,7 +1,7 @@
 "use-strict";
 const mysql = require("mysql2/promise");
 const dotenv = require("dotenv");
-dotenv.config();
+dotenv.config({path:""});
 (connection => {
     let dbClient = null;
     let tranConn = null;
@@ -10,10 +10,10 @@ dotenv.config();
         try {
             if (!dbClient) {
                 dbClient = mysql.createPool({
-                    host: process.env.host,
-                    user: process.env.user,
-                    password: process.env.password,
-                    database: process.env.database,
+                    host: "172.20.22.20",
+                    user: "devdb",
+                    password: "R00t4321#?!",
+                    database: "sagar_test",
                 });
                 console.log("MySQL connection pool initialized successfully!");
             }
@@ -47,7 +47,7 @@ dotenv.config();
 
     connection.query = async (query, fields) => {
         try {
-            let res = (tranConn || dbClient).query(query, fields);
+            let res = await (tranConn || dbClient).query(query, fields);
             (tranConn || dbClient).query("commit");
             return res;
         } catch (error) {

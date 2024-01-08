@@ -19,10 +19,10 @@ module.exports = {
                 customer_id: {
                     type: DataTypes.INTEGER(100),
                     allowNull: false,
-                    references: {
-                        model: "sagar_test",
-                        keys: "uuid",
-                    },
+                    // references: {
+                    //     model: "sagar_test",
+                    //     keys: "uuid",
+                    // },
                     unique: true,
                 },
                 bucket_name: {
