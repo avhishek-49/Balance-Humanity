@@ -37,16 +37,16 @@ module.exports = {
                     allowNull: false,
                 },
             })
-            .then(() => {
-                queryInterface.addConstraint("bucket_list_object", {
-                    type: "FOREIGN KEY",
-                    fields: ["customer_id"],
-                    references: {
-                        field: "id",
-                        table: "balance_humanity_users",
-                    },
-                });
-            });
+            // .then(() => {
+            //     queryInterface.addConstraint("bucket_list_object", {
+            //         type: "FOREIGN KEY",
+            //         fields: ["customer_id"],
+            //         references: {
+            //             field: "id",
+            //             table: "balance_humanity_users",
+            //         },
+            //     });
+            // });
     },
 
     down: async (queryInterface, Sequelize) => {
