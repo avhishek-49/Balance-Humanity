@@ -10,10 +10,10 @@ dotenv.config({path:""});
         try {
             if (!dbClient) {
                 dbClient = mysql.createPool({
-                    host: "172.20.22.20",
-                    user: "devdb",
-                    password: "R00t4321#?!",
-                    database: "sagar_test",
+                    host: process.env.host,
+                    user: process.env.user,
+                    password: process.env.password,
+                    database: process.env.database,
                 });
                 console.log("MySQL connection pool initialized successfully!");
             }

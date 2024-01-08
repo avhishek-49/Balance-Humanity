@@ -19,7 +19,7 @@ const httpStatus = require("http-status");
             const [result] = await mysqlHelper.query(query);
 
             if (result && result.length > 0) {
-                return (response = {status: httpStatus.OK, data: result[0]});
+                return (response = {status: httpStatus.OK, data: result});
             }
         } catch (error) {
             return error;

@@ -22,6 +22,7 @@ const upload = multer({storage: storage});
 
 router.post("/upload", upload.single("file"), uploadImage);
 router.get("/get", getImage);
+rou
 router.get("/geturl", getImageUrl);
 router.get("/fetchimage", fetchImageUrl);
 router.delete("/bucket/remove", removeBucket);
