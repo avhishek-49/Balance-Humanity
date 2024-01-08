@@ -15,7 +15,7 @@ const {v4} = require("uuid");
                 bucket_name: call.bucket_name,
             };
 
-            let query = await mysqlHelper.format(`INSERT INTO sagar_test.customer_bucket SET ?`, [insertObj]);
+            let query = await mysqlHelper.format(`INSERT INTO customer_bucket SET ?`, [insertObj]);
             const [result] = await mysqlHelper.query(query);
 
           
