@@ -1,6 +1,7 @@
 "use strict";
 const express = require("express");
 const router = express.Router();
+const protect = require("../middleware/protect.js");
 
 //unboarding customers
 const unboarding = require("./balance_humanity_unboard/route");

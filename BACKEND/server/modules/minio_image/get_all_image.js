@@ -1,15 +1,16 @@
 "use strict";
 const httpStatus = require("http-status");
-let minioHelper = require("../../helpers/minio_helper");
+let minioHelper = require("../../helpers/minio_helper.js");
 const {readCustomerBucket} = require("../customer_bucket/methods/index.js");
-const {readBucketImage} = require("../bucket_list_object/methods/index.js");
+const {readAllBucketImage} = require("../bucket_list_object/methods/index.js");
 const {Buffer} = require("node:buffer");
 
-let getImage = async (req, res) => {
+let getAllImage = async (req, res) => {
     let response = {
         status: httpStatus.BAD_REQUEST,
         data: "Bucket does not exist",
     };
+    // req.body = req.body.user
 
     let bucket_name = await readCustomerBucket(req); //read bucketname from db
     if (bucket_name.status != 200) {
@@ -22,35 +23,45 @@ let getImage = async (req, res) => {
 
     let image_request = {
         body: {
-            image_type: req.body.image_type,
+            bucket_name: req.body.user.uuid,
         },
     };
 
-    let image_name = await readBucketImage(image_request);
+    let image_name = await readAllBucketImage(image_request);
     if (image_name.status != 200) {
         response.data = "Image does not exist";
         return res.status(image_name.status).json(response);
     }
 
     try {
+
+        
         let getObjectFromBucketName = await minioHelper.listObjects(bucket_name.data[0].bucket_name);
         if (getObjectFromBucketName.status == 200) {
-            let url = `${process.env.MINIO_CLIENT}/${bucket_name.data[0].bucket_name}/${image_name.data.image_name}`;
+            let bucket_image =[]
+            await getObjectFromBucketName.data.forEach(async(element) => {
+                let url = `${process.env.MINIO_BASE_URL}/${bucket_name.data[0].bucket_name}/${element.name}`;
 
             let image = await minioHelper.fetchImage(url);
             if (image) {
                 const b64 = new Buffer(image).toString("base64");
                 const mimeType = "image/png";
-                return res.setHeader("contentType", "image/png").json({photo: `${b64}`, mimeType: `${mimeType}`});
+
+               await bucket_image.push({image_name: element.name,photo: `${b64}`, mimeType: `${mimeType}`})
                 // res.setHeader('contentType','image/jpg').send(img)
             }
+            // return res.setHeader("contentType", "image/png").json({photo: `${b64}`, mimeType: `${mimeType}`});
 
-            return res.status(200).json({message: getObjectFromBucketName});
+            });
+            
+            return res.status(200).json(bucket_image);
+
         }
-        return res.status(200).json(putIntoBucket);
+        return res.status(400).json({message: 'No image found'});
+
     } catch (error) {
         return res.status(400).json(error);
     }
 };
 
-module.exports = getImage;
+module.exports = getAllImage;

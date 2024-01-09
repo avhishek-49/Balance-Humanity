@@ -37,7 +37,7 @@ let getImage = async (req, res) => {
     try {
         let getObjectFromBucketName = await minioHelper.listObjects(bucket_name.data[0].bucket_name);
         if (getObjectFromBucketName.status == 200) {
-            let url = `${process.env.MINIO_BASE_URL}/${bucket_name.data[0].bucket_name}/${image_name.data.image_name}`;
+            let url = `${process.env.MINIO_BASE_URL}/${bucket_name.data[0].bucket_name}/${image_name.data[0].image_name}`;
 
             let image = await minioHelper.fetchImage(url);
             if (image) {

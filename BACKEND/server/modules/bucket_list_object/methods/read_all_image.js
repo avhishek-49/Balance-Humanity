@@ -1,13 +1,13 @@
 "use strict";
 const httpStatus = require("http-status");
-const {createBucketImageList} = require("../sql");
+const {readAllBucketImage} = require("../sql");
 
 (() => {
     module.exports = async (call) => {
         try {
             let response = {status: httpStatus.BAD_REQUEST, message: "Data Not found"};
 
-            response = await createBucketImageList(call.body);
+            response = await readAllBucketImage(call.body);
             if (response.status !== httpStatus.OK) {
                 // return res.status(400).json({ message: response.message });
                 return response;
