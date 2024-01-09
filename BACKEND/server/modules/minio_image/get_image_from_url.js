@@ -6,6 +6,8 @@ const {readBucketImage} = require("../bucket_list_object/methods/index.js");
 const {Buffer} = require("node:buffer");
 
 let getImage = async (req, res) => {
+    // let bucketName = process.env.BUCKET_NAME;
+    // let customer_id = req.body.customer_id;
     let response = {
         status: httpStatus.BAD_REQUEST,
         data: "Bucket does not exist",
@@ -22,7 +24,7 @@ let getImage = async (req, res) => {
 
     let image_request = {
         body: {
-            image_type: req.body.image_type,
+            image_category: req.body.image_category,
         },
     };
 

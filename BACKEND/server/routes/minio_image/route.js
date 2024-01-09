@@ -8,6 +8,8 @@ const fetchImageUrl = require("../../modules/minio_image/get_presigned_image.js"
 const removeBucket = require("../../modules/minio_image/remove_bucket.js");
 
 let multer = require("multer");
+const { protect,authorization } = require("../balance_humanity_unboard/index.js");
+const getAllImage = require("../../modules/minio_image/get_all_image.js");
 
 const storage = multer.diskStorage({
     destination: function (req, file, callback) {
@@ -20,10 +22,12 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage: storage});
 
-router.post("/upload", upload.single("file"), uploadImage);
-router.get("/get", getImage);
-router.get("/geturl", getImageUrl);
-router.get("/fetchimage", fetchImageUrl);
-router.delete("/bucket/remove", removeBucket);
+router.post("/upload", upload.single("file"),protect, uploadImage);
+router.get("/get",protect, getImage);
+router.get("/get-all",protect, getAllImage);
+router.delete("/bucket-remove", protect,authorization(["superCustomer"]),removeBucket);
+
+router.get("/geturl", getImageUrl); //not use
+router.get("/fetch-image", fetchImageUrl); //not use
 
 module.exports = router;

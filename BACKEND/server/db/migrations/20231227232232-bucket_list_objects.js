@@ -17,18 +17,18 @@ module.exports = {
                     unique: true,
                 },
                 customer_id: {
-                    type: DataTypes.INTEGER(100),
+                    type: DataTypes.STRING(36),
                     allowNull: false,
-                    references: {
-                        model: "balance_humanity_users",
-                        keys: "id",
-                    },
+                    // references: {
+                    //     model: "balance_humanity_users",
+                    //     keys: "uuid",
+                    // },
                 },
                 bucket_name: {
                     type: DataTypes.STRING(50),
                     allowNull: false,
                 },
-                image_type: {
+                image_category: {
                     type: DataTypes.STRING(30),
                     allowNull: false,
                 },

@@ -17,7 +17,7 @@ module.exports = {
                     unique: true,
                 },
                 customer_id: {
-                    type: DataTypes.INTEGER(100),
+                    type: DataTypes.STRING,
                     allowNull: false,
                     // references: {
                     //     model: "sagar_test",

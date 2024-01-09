@@ -9,7 +9,7 @@
     ```
     [{"key":"file","description":"","type":"file","enabled":true,"value":["/C:/Users/bibek.regmi/OneDrive/Pictures/ululu.png"],}
     ,{"key":"bucketName","value":"9898989898"},{"key":"customer_id","value":"2"}
-    ,{"key":"image_type","value":"profile"}]
+    ,{"key":"image_category","value":"profile"}]
     ```
 
 - Response Payload: The response for successfull message will be shown as:
@@ -23,17 +23,19 @@
 
 
 ### 2.) To get image from the bucket.
-- The user can request for the certain image type using the unique name, that is: image_type.
+- The user can request for the certain image type using the unique name, that is: image_category.
 #### Method : GET
 #### Url : {{humanity}}/api/v1/image/get
 
 - Request Payload:
     ```
     {
-    "customer_id":"2",
-    "image_type":"profile"
+    "image_category":"profile"
     }
     ```
+- Request Header:
+
+    -Authorization: Bearer ldfgagfbb........
 
 - Response Payload: The response for successfully image found is shown as:
 
