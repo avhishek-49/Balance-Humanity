@@ -9,11 +9,17 @@ const {protect, authorization} = require("./index.js");
 //transfer balance to any specific user
 router.post(
     "/transfer",
-    auth_user.auth_user,
+    // auth_user.auth_user,
     protect,
     authorization(["VictimCustomer", "superCustomer"]),
     transfer_balance
 );
-router.post("/load", auth_user.auth_user, protect, authorization(["VictimCustomer", "superCustomer"]), load_balance);
+router.post(
+    "/load",
+    //  auth_user.auth_user,
+    protect,
+    authorization(["VictimCustomer", "superCustomer"]),
+    load_balance
+);
 
 module.exports = router;

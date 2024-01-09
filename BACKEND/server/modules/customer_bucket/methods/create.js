@@ -14,7 +14,7 @@ const {createCustomerBucket} = require("../sql");
             }
             return response;
         } catch (error) {
-            return {status:httpStatus.BAD_REQUEST, message:error.message};
+            return {status: httpStatus.BAD_REQUEST, message: error.message};
         }
     };
 })();

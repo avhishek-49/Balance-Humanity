@@ -18,9 +18,9 @@ const {redisInit} = require("./helpers/redis_helper_new.js");
 //change end points name..... //todo
 app.use("/api/v1", mainRoutes);
 
-let PORT = process.env.PORT || 4900;
-app.listen(PORT, async () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+let port = process.env.SERVER_PORT || 4900;
+app.listen(port, async () => {
+    console.log(`Server is running on http://localhost:${port}`);
     await mysqlHelper.init();
     await minioHelper.init();
     await redisInit();

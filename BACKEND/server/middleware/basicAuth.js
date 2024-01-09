@@ -10,7 +10,7 @@ exports.auth_user = async (req, res, next) => {
     const user = auth[0];
     const pass = auth[1];
 
-    if (user == process.env.USERNAME && pass == process.env.PASSWORD) {
+    if (user == process.env.BASIC_AUTH_USERNAME && pass == process.env.BASIC_AUTH_PASSWORD) {
         return next();
     }
 

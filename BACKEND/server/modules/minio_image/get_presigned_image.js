@@ -11,11 +11,12 @@ module.exports = async (req, res) => {
         status: httpStatus.BAD_REQUEST,
         data: "Bucket does not exist",
     };
-
-    let bucket_name = await readCustomerBucket(req); //read bucketname from db
+    //read bucketname from db
+    let bucket_name = await readCustomerBucket(req);
     if (bucket_name.status != 200) {
         return res.status(httpStatus.BAD_REQUEST).json(response);
     }
+    //check if the bucket exist in the server
     let bucketExists = await minioHelper.bucketExists(bucket_name.data[0].bucket_name);
     if (bucketExists.status != 200) {
         return res.status(httpStatus.BAD_REQUEST).json(response);
