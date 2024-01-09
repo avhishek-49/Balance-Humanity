@@ -7,9 +7,10 @@ const httpStatus = require("http-status");
 
 let uploadImage = async (req, res) => {
     // let bucketName = process.env.BUCKET_NAME;
-    let bucketName = req.body.bucketName.toLowerCase();
+    let bucketName = req.body.user.uuid.toLowerCase();
 
     let image = req.file;
+    image.newName = req.body.image_type;
     let bucketExists = await minioHelper.bucketExists(bucketName);
     if (!bucketExists.status) {
         let bucketName = await minioHelper.makeBucket(bucketName);
@@ -23,17 +24,19 @@ let uploadImage = async (req, res) => {
 
                  let request = {
                 body: {
-                    customer_id: req.body.customer_id,
-                    bucket_name: req.body.bucketName, //bucket name must be unique so use email as bucket name
+                    customer_id: req.body.user.uuid,
+                    bucket_name: req.body.user.uuid, //bucket name must be unique so use email as bucket name
                 },
             };
              let customerBucket = await createCustomerBucket(request);
             if (customerBucket.status == 200 || customerBucket.errno == 1062) {
-                request.body.image_name = image.originalname;
+            let fileExtension = image.originalname.split('.')[1].toLowerCase();
+          let fileName = `${bucketName}-${image.newName}.${fileExtension}`
+                request.body.image_name = fileName
                 request.body.image_type = req.body.image_type;
                 let bucketImageList = await createBucketImageList(request);
                 if (bucketImageList.status == 200) {
-                    return res.status(httpStatus.OK).json(uploadImage.data)
+                    return res. status(httpStatus.OK).json(uploadImage.data)
                 }
                 return res.status(400).json({message: "Could not update the bucket image list"});
             }

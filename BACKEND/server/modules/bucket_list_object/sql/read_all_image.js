@@ -1,7 +1,6 @@
 "use strict";
 const {mysqlHelper} = require("../../../helpers");
 const httpStatus = require("http-status");
-const {v4} = require("uuid");
 
 (() => {
     module.exports = async (call, res) => {
@@ -10,15 +9,16 @@ const {v4} = require("uuid");
             // Combine the password and salt, then hash using bcrypt
 
             let insertObj = {
-                customer_id: call.user.uuid,
+                bucket_name: call.bucket_name,
             };
 
-            let query = await mysqlHelper.format(`SELECT bucket_name FROM customer_bucket where customer_id = ?`, [
-                insertObj.customer_id,
-            ]);
+            let query = await mysqlHelper.format(
+                `SELECT image_name from bucket_list_object where bucket_name = ?`,
+                [insertObj.bucket_name]
+            );
             const [result] = await mysqlHelper.query(query);
 
-            if (result && result[0].bucket_name) {
+            if (result && result.length > 0) {
                 return (response = {status: httpStatus.OK, data: result});
             }
         } catch (error) {

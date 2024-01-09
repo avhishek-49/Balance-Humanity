@@ -45,7 +45,7 @@
     };
 
     // check bucket in minio
-    minioHelper.bucketExists = bucketName => {
+    minioHelper.bucketExists = (bucketName) => {
         return new Promise((resolve, reject) => {
             try {
                 minioClient.bucketExists(bucketName, (err, exists) => {
@@ -178,6 +178,7 @@
                         return resolve({
                             status: 200,
                             message: "objects found",
+                            data:data
                         });
                         // }
                     }
@@ -316,7 +317,7 @@
           let base64 = fileStream.toString('hex');
           let fileExtension = file.originalname.split('.')[1].toLowerCase();
           let mimeType = `image/${fileExtension}`;
-          let fileName = `${uuidv4()}.${fileExtension}`
+          let fileName = `${uploadBucket}-${file.newName}.${fileExtension}`
       
           let significantBit = base64.slice(0,8)
           let checkedMimeType = minioHelper.checkMimeType(significantBit, mimeType)
@@ -342,7 +343,7 @@
                 }
         
                let data = {
-                  url:`${process.env.MINIO_BASE_URL}${uploadBucket}/${fileName}`,
+                  url:`${process.env.MINIO_BASE_URL}/${uploadBucket}/${fileName}`,
                   info: {...etag, fileName}
                 }
                 response = {status:200, data}
