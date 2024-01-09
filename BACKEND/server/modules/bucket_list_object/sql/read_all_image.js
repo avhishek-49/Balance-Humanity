@@ -12,10 +12,9 @@ const httpStatus = require("http-status");
                 bucket_name: call.bucket_name,
             };
 
-            let query = await mysqlHelper.format(
-                `SELECT image_name from bucket_list_object where bucket_name = ?`,
-                [insertObj.bucket_name]
-            );
+            let query = await mysqlHelper.format(`SELECT image_name from bucket_list_object where bucket_name = ?`, [
+                insertObj.bucket_name,
+            ]);
             const [result] = await mysqlHelper.query(query);
 
             if (result && result.length > 0) {

@@ -111,14 +111,12 @@ const bcrypt = require("bcrypt");
                         });
                         // await setValues(customerData.email,jwtRefreshToken);
 
-                        return res
-                            .status(200)
-                            .json({
-                                accessToken: jwtAccessToken,
-                                refreshToken: jwtRefreshToken,
-                                message: "login successfully!",
-                                customerData: JSON.stringify(customerData),
-                            });
+                        return res.status(200).json({
+                            accessToken: jwtAccessToken,
+                            refreshToken: jwtRefreshToken,
+                            message: "login successfully!",
+                            customerData: JSON.stringify(customerData),
+                        });
                     }
                 } else {
                     return res.status(401).json({message: "Invalid password."});

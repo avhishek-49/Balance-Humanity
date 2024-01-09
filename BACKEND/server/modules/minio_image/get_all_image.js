@@ -34,33 +34,26 @@ let getAllImage = async (req, res) => {
     }
 
     try {
-
-        
         let getObjectFromBucketName = await minioHelper.listObjects(bucket_name.data[0].bucket_name);
         if (getObjectFromBucketName.status == 200) {
-            let bucket_image =[]
-            for(let item of getObjectFromBucketName.data)
-            {
+            let bucket_image = [];
+            for (let item of getObjectFromBucketName.data) {
                 let url = `${process.env.MINIO_BASE_URL}/${bucket_name.data[0].bucket_name}/${item.name}`;
 
                 let image = await minioHelper.fetchImage(url);
                 if (image) {
                     const b64 = new Buffer(image).toString("base64");
                     const mimeType = "image/png";
-    
-                    bucket_image.push({image_name: item.name,photo: `${b64}`, mimeType: `${mimeType}`})
+
+                    bucket_image.push({image_name: item.name, photo: `${b64}`, mimeType: `${mimeType}`});
                 }
             }
             return res.status(200).json(bucket_image);
-
         }
-        return res.status(400).json({message: 'No image found'});
-
+        return res.status(400).json({message: "No image found"});
     } catch (error) {
         return res.status(400).json(error);
     }
 };
 
 module.exports = getAllImage;
-
-
