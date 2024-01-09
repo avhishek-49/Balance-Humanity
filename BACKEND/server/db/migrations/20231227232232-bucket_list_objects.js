@@ -28,7 +28,7 @@ module.exports = {
                     type: DataTypes.STRING(50),
                     allowNull: false,
                 },
-                image_type: {
+                image_category: {
                     type: DataTypes.STRING(30),
                     allowNull: false,
                 },

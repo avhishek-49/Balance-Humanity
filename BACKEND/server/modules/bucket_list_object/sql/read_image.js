@@ -9,12 +9,12 @@ const httpStatus = require("http-status");
             // Combine the password and salt, then hash using bcrypt
 
             let insertObj = {
-                image_type: call.image_type,
+                image_category: call.image_category,
             };
 
             let query = await mysqlHelper.format(
-                `SELECT customer_id, bucket_name, image_name from bucket_list_object where image_type = ?`,
-                [insertObj.image_type]
+                `SELECT customer_id, bucket_name, image_name from bucket_list_object where image_category = ?`,
+                [insertObj.image_category]
             );
             const [result] = await mysqlHelper.query(query);
 

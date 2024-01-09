@@ -14,7 +14,7 @@ const {v4} = require("uuid");
                 customer_id: call.customer_id,
                 image_name: call.image_name,
                 bucket_name: call.bucket_name,
-                image_type: call.image_type,
+                image_category: call.image_category,
             };
 
             let query = await mysqlHelper.format(`INSERT IGNORE INTO bucket_list_object SET ?`, [insertObj]);
