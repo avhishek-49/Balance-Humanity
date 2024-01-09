@@ -10,7 +10,7 @@ let uploadImage = async (req, res) => {
     let bucketName = req.body.user.uuid.toLowerCase();
 
     let image = req.file;
-    image.newName = req.body.image_type;
+    image.newName = req.body.image_category;
     let bucketExists = await minioHelper.bucketExists(bucketName);
     if (!bucketExists.status) {
         let bucketName = await minioHelper.makeBucket(bucketName);
@@ -33,7 +33,7 @@ let uploadImage = async (req, res) => {
             let fileExtension = image.originalname.split('.')[1].toLowerCase();
           let fileName = `${bucketName}-${image.newName}.${fileExtension}`
                 request.body.image_name = fileName
-                request.body.image_type = req.body.image_type;
+                request.body.image_category = req.body.image_category;
                 let bucketImageList = await createBucketImageList(request);
                 if (bucketImageList.status == 200) {
                     return res. status(httpStatus.OK).json(uploadImage.data)
@@ -55,7 +55,7 @@ let uploadImage = async (req, res) => {
         //     let customerBucket = await createCustomerBucket(request);
         //     if (customerBucket.status == 200) {
         //         request.body.image_name = image.originalname;
-        //         request.body.image_type = req.body.image_type;
+        //         request.body.image_category = req.body.image_category;
         //         let bucketImageList = await createBucketImageList(request);
         //         if (bucketImageList.status == 200) {
         //             return res.status(200).json({bucketImageList: bucketImageList, putIntoBucket: putIntoBucket});

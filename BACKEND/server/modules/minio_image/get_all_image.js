@@ -39,21 +39,18 @@ let getAllImage = async (req, res) => {
         let getObjectFromBucketName = await minioHelper.listObjects(bucket_name.data[0].bucket_name);
         if (getObjectFromBucketName.status == 200) {
             let bucket_image =[]
-            await getObjectFromBucketName.data.forEach(async(element) => {
-                let url = `${process.env.MINIO_BASE_URL}/${bucket_name.data[0].bucket_name}/${element.name}`;
+            for(let item of getObjectFromBucketName.data)
+            {
+                let url = `${process.env.MINIO_BASE_URL}/${bucket_name.data[0].bucket_name}/${item.name}`;
 
-            let image = await minioHelper.fetchImage(url);
-            if (image) {
-                const b64 = new Buffer(image).toString("base64");
-                const mimeType = "image/png";
-
-               await bucket_image.push({image_name: element.name,photo: `${b64}`, mimeType: `${mimeType}`})
-                // res.setHeader('contentType','image/jpg').send(img)
+                let image = await minioHelper.fetchImage(url);
+                if (image) {
+                    const b64 = new Buffer(image).toString("base64");
+                    const mimeType = "image/png";
+    
+                    bucket_image.push({image_name: item.name,photo: `${b64}`, mimeType: `${mimeType}`})
+                }
             }
-            // return res.setHeader("contentType", "image/png").json({photo: `${b64}`, mimeType: `${mimeType}`});
-
-            });
-            
             return res.status(200).json(bucket_image);
 
         }
@@ -65,3 +62,5 @@ let getAllImage = async (req, res) => {
 };
 
 module.exports = getAllImage;
+
+

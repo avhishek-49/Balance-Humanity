@@ -24,7 +24,7 @@ let getImage = async (req, res) => {
 
     let image_request = {
         body: {
-            image_type: req.body.image_type,
+            image_category: req.body.image_category,
         },
     };
 
