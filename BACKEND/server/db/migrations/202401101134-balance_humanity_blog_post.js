@@ -8,7 +8,7 @@ module.exports = {
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
-                type: DataTypes.INTEGER(100),
+                type: DataTypes.INTEGER(255),
             },
             uuid: {
                 type: DataTypes.STRING(36),

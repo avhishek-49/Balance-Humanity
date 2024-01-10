@@ -9,7 +9,7 @@ const {createCustomerPostSql} = require("../sql");
 
             response = await createCustomerPostSql(call.body);
             if (response.status !== httpStatus.OK) {
-                return res.status(400).json({ status: httpStatus.BAD_REQUEST,message: response.message });
+                return res.status(httpStatus.BAD_REQUEST).json({ status: httpStatus.BAD_REQUEST,message: response.message });
                 // return response;
             }
             return res.status(200).json({status: httpStatus.OK, message: response.message });
