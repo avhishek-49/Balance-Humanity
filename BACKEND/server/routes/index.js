@@ -15,4 +15,8 @@ router.use("/image", image);
 const balance = require("./balance_transfer/route.js");
 router.use("/balance", balance);
 
+//Customer posts CRUD
+const post = require("./customer_post/route.js");
+router.use("/post", post);
+
 module.exports = router;
