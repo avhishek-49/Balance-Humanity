@@ -54,7 +54,7 @@ const bcrypt = require("bcrypt");
                     if (call.body.otp) {
                         let redisRes = await getValues(call.body.mobileNumber);
 
-                        if (redisRes || parseInt(redisRes) !== parseInt(call.body.otp)) {
+                        if (!redisRes || parseInt(redisRes) != parseInt(call.body.otp)) {
                             return res.status(400).send("Invalid OTP sent");
                         }
                         await delValues(call.body.mobileNumber);
