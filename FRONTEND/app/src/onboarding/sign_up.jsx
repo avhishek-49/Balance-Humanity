@@ -32,29 +32,32 @@ const SignUpApplication = () => {
 
   const handleRegister = async () => {
     try {
-      console.log('Attempting to register:', formData); // Add this line
+      console.log('Attempting to register:', formData);
       const response = await axios.post(
         'http://localhost:4900/api/v1/customer/register',
         formData
       );
   
-      console.log('Response from server:', response); // Add this line
-  
+      console.log('Response from server:', response);
       if (response && response.status === 400) {
         // Display bad request error message
-        showPopup(`${response.data.message}`, 'red');
+        console.error('Bad Request Error:', response.data);
+        console.log('Error Message:', response.data.message);
+        showPopup(response.data.message, 'red');
       }
   
       if (response && response.status === 200) {
         // Display success message
-        showPopup('Success', 'green');
+        showPopup(response.data.message, 'green');
+        // navigate(`/${response.config.url}`);
       }
     } catch (error) {
-      console.error('Error during registration:', error); // Add this line
+      console.error('Error during registration:', error);
       // Display error message
       showPopup('Balance humanity registration failed', 'red');
     }
   };
+  
 
 
 return (
