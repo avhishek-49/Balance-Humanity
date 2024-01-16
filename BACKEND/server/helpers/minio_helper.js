@@ -45,7 +45,7 @@
     };
 
     // check bucket in minio
-    minioHelper.bucketExists = bucketName => {
+    minioHelper.bucketExists = (bucketName) => {
         return new Promise((resolve, reject) => {
             try {
                 minioClient.bucketExists(bucketName, (err, exists) => {
