@@ -1,6 +1,6 @@
 "use strict";
 
-(minioHelper => {
+((minioHelper) => {
     const Minio = require("minio");
     const Promise = require("bluebird");
     const axios = require("axios").default;
