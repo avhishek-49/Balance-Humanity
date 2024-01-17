@@ -24,11 +24,11 @@ let getImage = async (req, res) => {
 
     let image_request = {
         body: {
-<<<<<<< HEAD
             image_category: req.body.image_category,
-=======
+
             image_type: req.body.image_type,
->>>>>>> ba16240 (upload wipo)
+
+            image_category: req.body.image_category,
         },
     };
 

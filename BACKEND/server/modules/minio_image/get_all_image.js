@@ -34,8 +34,6 @@ let getAllImage = async (req, res) => {
     }
 
     try {
-
-        
         let getObjectFromBucketName = await minioHelper.listObjects(bucket_name.data[0].bucket_name);
         if (getObjectFromBucketName.status == 200) {
             let bucket_image = [];

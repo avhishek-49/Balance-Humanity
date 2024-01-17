@@ -1,6 +1,6 @@
 "use strict";
 
-((minioHelper) => {
+(minioHelper => {
     const Minio = require("minio");
     const Promise = require("bluebird");
     const axios = require("axios").default;
@@ -45,7 +45,7 @@
     };
 
     // check bucket in minio
-    minioHelper.bucketExists = (bucketName) => {
+    minioHelper.bucketExists = bucketName => {
         return new Promise((resolve, reject) => {
             try {
                 minioClient.bucketExists(bucketName, (err, exists) => {

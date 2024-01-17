@@ -5,5 +5,4 @@ module.exports = {
     updateCustomerPostSql: require("./update.js"),
     deleteCustomerPostSql: require("./delete.js"),
     readAllCustomerPostSql: require("./readAll.js"),
-
 };

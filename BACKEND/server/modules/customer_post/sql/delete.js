@@ -17,7 +17,7 @@ const {v4} = require("uuid");
             ]);
             const [result] = await mysqlHelper.query(query);
 
-            if (result && result.affectedRows>0) {
+            if (result && result.affectedRows > 0) {
                 return (response = {status: httpStatus.OK, data: result});
             }
         } catch (error) {

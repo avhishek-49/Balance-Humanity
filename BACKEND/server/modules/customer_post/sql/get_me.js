@@ -11,9 +11,10 @@ const httpStatus = require("http-status");
                 customer_id: call.user.uuid,
             };
 
-            let query = await mysqlHelper.format(`SELECT uuid, customer_id, description, image_name, status,created_at FROM balance_humanity_blog_post where customer_id = ?`, [
-                insertObj.customer_id,
-            ]);
+            let query = await mysqlHelper.format(
+                `SELECT uuid, customer_id, description, image_name, status,created_at FROM balance_humanity_blog_post where customer_id = ?`,
+                [insertObj.customer_id]
+            );
             const [result] = await mysqlHelper.query(query);
 
             if (result && result[0].uuid) {

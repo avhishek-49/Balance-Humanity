@@ -7,7 +7,6 @@ const httpStatus = require("http-status");
         try {
             let response = {status: httpStatus.BAD_REQUEST, data: "Data Not found"};
 
-
             let query = await mysqlHelper.format(`SELECT 
             pb.id,
             pb.uuid,
@@ -26,7 +25,7 @@ const httpStatus = require("http-status");
             TRUE;`);
             const [result] = await mysqlHelper.query(query);
 
-            if (result && result.length>0) {
+            if (result && result.length > 0) {
                 return (response = {status: httpStatus.OK, data: result});
             }
         } catch (error) {

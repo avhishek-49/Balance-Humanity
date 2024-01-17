@@ -3,7 +3,7 @@ const httpStatus = require("http-status");
 const {readCustomerBucket} = require("../sql");
 
 (() => {
-    module.exports = async (call) => {
+    module.exports = async call => {
         try {
             let response = {status: httpStatus.BAD_REQUEST, message: "Data Not found"};
 
