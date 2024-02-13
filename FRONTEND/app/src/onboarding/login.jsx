@@ -3,6 +3,7 @@ import React from 'react';
 import './App.css'; // You'll need to create this CSS file
 import { FaUser, FaLock } from "react-icons/fa"
 import { useNavigate } from 'react-router-dom';
+import handleRequest from './../common_helpers/handel_http_axios_request';
 const App = () => {
   const navigate = useNavigate()
 
@@ -16,6 +17,24 @@ const App = () => {
 
 //loginnn .......
 
+// handleRequest(baseUrl, endpoint, method, requestBody);
+
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    mobileNumber: '',
+    password: '',
+    customerPin: '',
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
 
   return (
