@@ -18,7 +18,6 @@ module.exports = {
             customer_id:{
                 type:DataTypes.UUID,
                 allowNull:false,
-                //foreign key from customer table
             },
             description: {
                 type: DataTypes.TEXT,

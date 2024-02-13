@@ -3,24 +3,21 @@
       "username": "root",
       "password": "P@ssw0rd",
       "database": "db_balance_humanity",
-      "host": "127.0.0.1",
+      "host": "localhost",
       "dialect": "mysql"
     },
     "test": {
       "username": "root",
-      "password": "password",
+      "password": "P@ssw0rd",
       "database": "db_balance_humanity",
       "host": "127.0.0.1",
       "dialect": "mysql"
     },
     "production": {
       "username": "root",
-      "password": "password",
-      "database": "cms",
+      "password": "P@ssw0rd",
+      "database": "db_balance_humanity",
       "host": "127.0.0.1",
       "dialect": "mysql"
     }
   }
-
-
-

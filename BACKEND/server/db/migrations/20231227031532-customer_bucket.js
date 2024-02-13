@@ -18,10 +18,6 @@ module.exports = {
             customer_id: {
                 type: DataTypes.STRING,
                 allowNull: false,
-                // references: {
-                //     model: "sagar_test",
-                //     keys: "uuid",
-                // },
                 unique: true,
             },
             bucket_name: {
@@ -30,16 +26,7 @@ module.exports = {
                 unique: true,
             },
         });
-        // .then(() => {
-        //     queryInterface.addConstraint("customer_bucket", {
-        //         type: "FOREIGN KEY",
-        //         fields: ["customer_id"],
-        //         references: {
-        //             field: "uuid",
-        //             table: "sagar_test",
-        //         },
-        //     });
-        // });
+
     },
 
     down: async (queryInterface, Sequelize) => {

@@ -25,13 +25,13 @@ module.exports = {
             },
             email: {
                 type: DataTypes.STRING(50),
-                allowNull: false,
-                unique: true,
+                allowNull: true,
+              
             },
             mobile_number: {
                 type: DataTypes.STRING(20),
-                allowNull: false,
-                unique: true,
+                allowNull: true,
+             
             },
             password: {
                 type: DataTypes.STRING(200),

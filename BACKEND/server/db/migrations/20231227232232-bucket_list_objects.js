@@ -17,11 +17,7 @@ module.exports = {
             },
             customer_id: {
                 type: DataTypes.STRING(36),
-                allowNull: false,
-                // references: {
-                //     model: "balance_humanity_users",
-                //     keys: "uuid",
-                // },
+                allowNull: false
             },
             bucket_name: {
                 type: DataTypes.STRING(50),
@@ -36,16 +32,7 @@ module.exports = {
                 allowNull: false,
             },
         });
-        // .then(() => {
-        //     queryInterface.addConstraint("bucket_list_object", {
-        //         type: "FOREIGN KEY",
-        //         fields: ["customer_id"],
-        //         references: {
-        //             field: "id",
-        //             table: "balance_humanity_users",
-        //         },
-        //     });
-        // });
+   
     },
 
     down: async (queryInterface, Sequelize) => {
