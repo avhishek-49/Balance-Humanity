@@ -39,25 +39,24 @@ const SignUpApplication = () => {
       );
   
       console.log('Response from server:', response);
-      if (response && response.status === 400) {
-        // Display bad request error message
+      if (response.status === 400) {
+        // Display bad request error message from backend
         console.error('Bad Request Error:', response.data);
         console.log('Error Message:', response.data.message);
         showPopup(response.data.message, 'red');
       }
   
-      if (response && response.status === 200) {
+      if (response.status === 200) {
         // Display success message
         showPopup(response.data.message, 'green');
-        // navigate(`/${response.config.url}`);
+        navigateToHome();
       }
     } catch (error) {
       console.error('Error during registration:', error);
       // Display error message
-      showPopup('Balance humanity registration failed', 'red');
+      showPopup('Registration Failed', 'red');
     }
   };
-  
 
 
 return (

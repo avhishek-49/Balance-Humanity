@@ -29,7 +29,7 @@ const jwt = require("jsonwebtoken");
                 customer_pin: await bcrypt.hash(call.customerPin, 10),
             };
 
-            let query = await mysqlHelper.format(`INSERT IGNORE INTO sagar_test.balance_humanity_users SET ?`, [
+            let query = await mysqlHelper.format(`INSERT IGNORE INTO db_balance_humanity.balance_humanity_users SET ?`, [
                 insertObj,
             ]);
             const [result] = await mysqlHelper.query(query);
