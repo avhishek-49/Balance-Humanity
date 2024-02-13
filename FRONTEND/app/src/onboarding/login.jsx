@@ -1,9 +1,9 @@
-// src/components/RegisterForm.jsx
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios'; // Add this import statement
 import './App.css'; // You'll need to create this CSS file
 import { FaUser, FaLock } from "react-icons/fa"
 import { useNavigate } from 'react-router-dom';
-import handleRequest from './../common_helpers/handel_http_axios_request';
+// import handleRequest from './../common_helpers/handel_http_axios_request';
 const App = () => {
   const navigate = useNavigate()
 
@@ -20,12 +20,8 @@ const App = () => {
 // handleRequest(baseUrl, endpoint, method, requestBody);
 
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
     mobileNumber: '',
-    password: '',
-    customerPin: '',
+    password: ''
   });
 
   const handleChange = (e) => {
@@ -35,6 +31,36 @@ const App = () => {
       [name]: value,
     }));
   };
+
+
+  const handleLogin = async () => {
+    try {
+      console.log('Attempting to login:', formData);
+      const response = await axios.post(
+        'http://localhost:4900/api/v1/customer/login',
+        formData
+      );
+  
+      console.log('Response from server:', response);
+      if (response.status === 400) {
+        // Display bad request error message from backend
+        console.error('Bad Request Error:', response.data);
+        console.log('Error Message:', response.data.message);
+        showPopup(response.data.message, 'red');
+      }
+  
+      if (response.status === 200) {
+        // Display success message
+        showPopup(response.data.message, 'green');
+        navigateToHome();
+      }
+    } catch (error) {
+      console.error('Error during registration:', error);
+      // Display error message
+      showPopup('Registration Failed', 'red');
+    }
+  };
+
 
 
   return (
@@ -59,20 +85,12 @@ const App = () => {
         <div className="title">Login</div>
 
         {/* User Name input */}
-        <div>
-          <label htmlFor="username">Mobile Number</label>
-          {/* <i className="fas fa-user"></i>
-           */}
-          <FaUser size={20} className='userIconClass'></FaUser>
-
-
-          <input type="text" name="username" id="username" placeholder="98XXXXXXXX" />
-
-          <i className="fas fa-exclamation-circle failure-icon"></i>
-          <i className="far fa-check-circle success-icon"></i>
-
-          <div className="error"></div>
-        </div>
+        <div className="">
+        <label htmlFor="mobileNumber">Mobile Number</label>
+        <i className="far fa-envelope"></i>
+        <FaUser size={20} className='userIconClass'></FaUser>
+        <input type="text" name="mobileNumber" value={formData.mobileNumber} onChange={handleChange} />
+      </div>
 
         {/* Email input */}
         {/* <div>
@@ -92,7 +110,8 @@ const App = () => {
           <label htmlFor="password">Password</label>
 
           <FaLock className='userIconClass' size={20} />
-          <input type="password" name="password" id="password" placeholder="Password here" />
+          <input type="password" name="password" id="password" placeholder="Password here" value={formData.password} onChange={handleChange}  />
+
 
           <i className="fas fa-exclamation-circle failure-icon"></i>
           <i className="far fa-check-circle success-icon"></i>
@@ -100,7 +119,7 @@ const App = () => {
           <div className="error"></div>
         </div>
 
-        <button id="btn" type="submit">
+        <button type="button" onClick={handleLogin} id="btn">
           Submit
         </button>
 
