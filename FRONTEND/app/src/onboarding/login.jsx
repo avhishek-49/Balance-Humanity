@@ -24,7 +24,6 @@ const App = () => {
     setShowPassword(prevState => !prevState);
   };
 
-//loginnn .......
 
 // handleRequest(baseUrl, endpoint, method, requestBody);
 

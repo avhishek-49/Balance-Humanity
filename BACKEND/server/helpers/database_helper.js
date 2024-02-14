@@ -65,5 +65,6 @@ dotenv.config({path: ""});
         }
     };
 
-    // ... (rest of the functions) ...
+
+    // rest of the functions........
 })(module.exports);

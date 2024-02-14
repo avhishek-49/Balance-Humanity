@@ -33,7 +33,7 @@ const bcrypt = require("bcrypt");
                 if (match) {
 
 
-                // 2 factor authentication
+                // 2 factor authentication implemented
 
                 
                     // if (!call.body.otp || call.body.otp == "") {
