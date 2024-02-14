@@ -30,14 +30,16 @@ const { setValues, getValues, delValues } = require("../../../helpers/redis_help
                 let mailService = await mailHelper.send(message);
                 if (mailService && mailService.status == true) {
                     await setValues(call.body.mobileNumber, mailService.OTP);
-                    return res.status(200).send(`Otp send successfully to mail - ${message.email}`);
+                    return res.status(200).send({ message: `Otp send successfully to mail - ${message.email}` });
                 }
+
+              
             }
             if (call.body.otp && call.body.otp.length > 0) {
                 let redisRes = await getValues(call.body.mobileNumber);
 
                 if (!redisRes || parseInt(redisRes) != parseInt(call.body.otp)) {
-                    return res.status(400).send("Invalid OTP sent");
+                    return res.status(400).send(  { message: `Invalid or expired otp!` });
                 }
                 await delValues(call.body.mobileNumber);
 
