@@ -8,13 +8,13 @@ const service = process.env.SMTPSERVICE;
 (sendingMail => {
     sendingMail.send = async message => {
         const transporter = nodemailer.createTransport({
-            host: host,
-            port: port,
+            host: "mail.myserver.com",
+            port: 587,
             secure: false,
-            service: service,
+            service: "gmail",
             auth: {
-                user: process.env.USEREMAIL,
-                pass: process.env.PASSWORD,
+                user:"balancehumanity49@gmail.com",
+                pass: "mdgh lnzk hxpd htsw",
             },
         });
         await transporter.sendMail({

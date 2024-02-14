@@ -4,6 +4,8 @@ import './App.css'; // You'll need to create this CSS file
 import { FaUser, FaLock } from "react-icons/fa"
 import { useNavigate } from 'react-router-dom';
 // import handleRequest from './../common_helpers/handel_http_axios_request';
+
+
 const App = () => {
   const navigate = useNavigate()
 
@@ -14,6 +16,13 @@ const App = () => {
   {
     navigate("/")
   }
+
+  const [showPassword, setShowPassword] = useState(false);
+
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(prevState => !prevState);
+  };
 
 //loginnn .......
 
@@ -57,7 +66,7 @@ const App = () => {
     } catch (error) {
       console.error('Error during registration:', error);
       // Display error message
-      showPopup('Registration Failed', 'red');
+      showPopup('Login attemp Failed', 'red');
     }
   };
 
