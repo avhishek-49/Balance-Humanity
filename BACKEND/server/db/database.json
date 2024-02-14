@@ -1,23 +1,23 @@
 {
-    "development": {
-      "username": "root",
-      "password": "1234",
-      "database": "db_balance_humanity",
-      "host": "localhost",
-      "dialect": "mysql"
-    },
-    "test": {
-      "username": "root",
-      "password": "P@ssw0rd",
-      "database": "db_balance_humanity",
-      "host": "127.0.0.1",
-      "dialect": "mysql"
-    },
-    "production": {
-      "username": "root",
-      "password": "P@ssw0rd",
-      "database": "db_balance_humanity",
-      "host": "127.0.0.1",
-      "dialect": "mysql"
-    }
+  "development": {
+    "username": "root",
+    "password": "1234",
+    "database": "db_balance_humanity",
+    "host": "localhost",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": "P@ssw0rd",
+    "database": "db_balance_humanity",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": "P@ssw0rd",
+    "database": "db_balance_humanity",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
   }
+}

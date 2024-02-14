@@ -13,7 +13,7 @@ app.use(express.urlencoded({extended: true}));
 
 // Welcome message
 app.get("/", (req, res) => {
-    res.json({message: "Hello, Balance Humanity"});
+res.json({message: "Hello, Balance Humanity"});
 });
 
 const mainRoutes = require("./routes/index.js");
@@ -23,8 +23,8 @@ app.use("/api/v1", mainRoutes);
 
 let port = process.env.SERVER_PORT || 4900;
 app.listen(port, async () => {
-    console.log(`Server is running on http://localhost:${port}`);
-    await mysqlHelper.init();
-    // await minioHelper.init();
-    await redisInit();
+console.log(`Server is running on http://localhost:${port}`);
+await mysqlHelper.init();
+// await minioHelper.init();
+await redisInit();
 });
