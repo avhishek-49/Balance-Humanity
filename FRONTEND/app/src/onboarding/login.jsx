@@ -12,6 +12,10 @@ const App = () => {
   function navigateToHome() {
     navigate("submit")
   }
+
+  function navigateWelcomeScreen() {
+    navigate("home")
+  }
   function navigateFrontPage ()
   {
     navigate("/")
@@ -20,9 +24,9 @@ const App = () => {
   const [showPassword, setShowPassword] = useState(false);
 
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(prevState => !prevState);
-  };
+  // const togglePasswordVisibility = () => {
+  //   setShowPassword(prevState => !prevState);
+  // };
 
 
 // handleRequest(baseUrl, endpoint, method, requestBody);
@@ -60,7 +64,7 @@ const App = () => {
       if (response.status === 200) {
         // Display success message
         showPopup(response.data.message, 'green');
-        navigateToHome();
+        navigateWelcomeScreen();
       }
     } catch (error) {
       console.error('Error during registration:', error);

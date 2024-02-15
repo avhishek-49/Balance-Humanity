@@ -3,6 +3,7 @@ import axios from 'axios'; // Add this import statement
 import './sign_up.css';
 import { FaUser, FaLock } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 import showPopup from '../helpers/pop_up_notification';
 
@@ -12,6 +13,11 @@ const SignUpApplication = () => {
   function navigateToHome() {
     navigate('/');
   }
+  function navigateOtp() {
+    navigate('/otp');
+  }
+  const [loading, setLoading] = useState(false);
+
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -32,6 +38,8 @@ const SignUpApplication = () => {
 
   const handleRegister = async () => {
     try {
+      setLoading(true);
+
       console.log('Attempting to register:', formData);
       const response = await axios.post(
         'http://localhost:4900/api/v1/customer/register',
@@ -49,12 +57,16 @@ const SignUpApplication = () => {
       if (response.status === 200) {
         // Display success message
         showPopup(response.data.message, 'green');
-        navigateToHome();
+        navigateOtp();
+        setLoading(false);
+
       }
     } catch (error) {
       console.error('Error during registration:', error);
       // Display error message
       showPopup('Registration Failed', 'red');
+      setLoading(false);
+
     }
   };
 
@@ -121,12 +133,18 @@ return (
 
 
 
-      <button type="button" onClick={handleRegister} id="btn">
-        Submit
-      </button>
-      <button type="button" onClick={navigateToHome}>
-        Already Have Account
-      </button>
+{loading ? (
+          <div className="loading-container">
+            <CircularProgress style={{ color: '#ff5278' }} />
+          </div>
+        ) : (
+          <button type="button" onClick={handleRegister} id="btn">
+            Submit
+          </button>
+        )}
+        <button type="button" onClick={navigateToHome}>
+          Already Have Account
+        </button>
     </form>
   </div>
 );
