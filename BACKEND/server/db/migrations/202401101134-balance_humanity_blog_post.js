@@ -34,6 +34,10 @@ up: async (queryInterface, Sequelize) => {
             allowNull: false,
             defaultValue: true,
         },
+        district_name: {
+            type: DataTypes.STRING(50),
+            allowNull: true,
+        },
 
         created_at: {
             type: DataTypes.BIGINT,
