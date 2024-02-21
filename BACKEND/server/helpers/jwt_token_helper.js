@@ -44,7 +44,7 @@ jwtTokenGeneratorHelper.generateJWTRefreshToken = userId => {
 
 jwtTokenGeneratorHelper.verifyJWTToken = (token, key) => {
     return new Promise((resolve, reject) => {
-        jwt.verify(token, key, {algorithm: process.env.AUTH_HASH_ALGORITHM}, (err, decoded) => {
+        jwt.verify(token, key, {algorithm: "HS256"}, (err, decoded) => {
             if (err) {
                 return reject({success: false, message: err.name});
             }

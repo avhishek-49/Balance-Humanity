@@ -17,6 +17,6 @@ router.use("/balance", balance);
 
 //Customer posts CRUD
 const post = require("./customer_post/route.js");
-router.use("/victim-post", post);
+router.use("/post", post);
 
 module.exports = router;

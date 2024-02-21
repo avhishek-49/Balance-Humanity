@@ -19,7 +19,7 @@ if (!token) {
 }
 try {
     // Verify token
-    const decoded = await jwtHelper.verifyJWTToken(token, process.env.ACCESS_TOKEN_SECRET_KEY);
+    const decoded = await jwtHelper.verifyJWTToken(token, "your_access_token_secret_key");
 
     let basequery = `SELECT uuid,email,mobile_number,
 case when customer_type= 1 then "NormalCustomer"

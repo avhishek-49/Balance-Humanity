@@ -11,8 +11,8 @@ try {
         customer_id: body.user.uuid,
         description: body.description,
         image_name: body.image_name,
-        created_at: body.created_at,
-        updated_at: body.updated_at,
+        created_at: new Date().getTime(),
+        updated_at: new Date().getTime(),
     };
 
     const query = await mysqlHelper.format(`INSERT INTO balance_humanity_blog_post SET ?`, [insertObj]);
