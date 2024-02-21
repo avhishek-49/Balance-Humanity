@@ -33,38 +33,6 @@ FROM db_balance_humanity.balance_humanity_users WHERE mobile_number = "${call.bo
             if (match) {
 
 
-            // 2 factor authentication implemented
-
-            
-                // if (!call.body.otp || call.body.otp == "") {
-                //     const OTP = Math.floor(Math.random() * (9999 - 1111) + 1111); //generates 4 digits random key
-                //     const message = {
-                //         subject: `OTP verification Message`,
-                //         details: {
-                //             message: `This is an OTP to verify your login`,
-                //             value: OTP,
-                //         },
-                //         email: userExistCheckResult[0].email,
-                //         type: "OTP",
-                //     };
-
-                //     let mailService = await sendingMail.send(message);
-                //     if (mailService && mailService.status == true) {
-                //         await setValues(call.body.mobileNumber, mailService.OTP);
-                //         return res.status(200).send(`Please check mail for the otp sent to ${message.email}`);
-                //     }
-                // }
-                // if (call.body.otp) {
-                //     let redisRes = await getValues(call.body.mobileNumber);
-
-                //     if (!redisRes || parseInt(redisRes) != parseInt(call.body.otp)) {
-                //         return res.status(400).send("Invalid OTP sent");
-                //     }
-                //     await delValues(call.body.mobileNumber);
-                // }
-
-
-
                 // OTP is verified now and proceed for further request
                 let redisValue = await getValues(`${userExistCheckResult[0].email}`);
                 if (redisValue && redisValue.accessToken) {

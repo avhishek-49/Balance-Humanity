@@ -2,7 +2,7 @@
 const httpStatus = require("http-status");
 const { createBalanceHumanitySql } = require("../sql");
 const { balanceHumanityValidator } = require("./../helpers");
-const { mailHelper } = require("./../../../helpers");
+const { mailHelper,mysqlHelper} = require("./../../../helpers");
 const { setValues, getValues, delValues } = require("../../../helpers/redis_helper_new");
 
 (() => {
@@ -14,6 +14,15 @@ const { setValues, getValues, delValues } = require("../../../helpers/redis_help
                 return res.status(400).json({ message: response.message });
             }
 
+
+
+        let validateQuery = await mysqlHelper.format(`select uuid from db_balance_humanity.balance_humanity_users where mobile_number = "${call.body.mobileNumber}"`);
+        let [validateResult]= await mysqlHelper.query(validateQuery);
+        if(validateResult && validateResult.length >0)
+        {
+            return res.status(400).send(  { message: `Redundant mobile number!` });
+
+        }
 
             if (!call.body.otp || call.body.otp == "") {
                 const OTP = Math.floor(Math.random() * (999999 - 111111) + 111111); //generates 4 digits random key

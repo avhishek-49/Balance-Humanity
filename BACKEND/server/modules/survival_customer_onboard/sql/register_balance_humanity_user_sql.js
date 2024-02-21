@@ -11,6 +11,7 @@ module.exports = async (call, res) => {
         let response = {status: httpStatus.BAD_REQUEST, message: "Data Not found"};
         // Combine the password and salt, then hash using bcrypt
 
+
         let insertObj = {
             uuid: v4(),
             first_name: call.firstName,
