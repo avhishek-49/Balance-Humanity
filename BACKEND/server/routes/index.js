@@ -9,14 +9,13 @@ router.use("/customer", unboarding);
 
 //image functionalities
 const image = require("./minio_image/route.js");
-router.use("/image", image);
+router.use("/customer-post", image);
 
 //Balance transfer and load routes
 const balance = require("./balance_transfer/route.js");
 router.use("/balance", balance);
 
-//Customer posts CRUD
-const post = require("./customer_post/route.js");
-router.use("/post", post);
+// const post = require("./customer_post/route.js");
+// router.use("/post", post);
 
 module.exports = router;

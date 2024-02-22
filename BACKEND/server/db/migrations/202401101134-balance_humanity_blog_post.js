@@ -10,36 +10,41 @@ up: async (queryInterface, Sequelize) => {
             primaryKey: true,
             type: DataTypes.INTEGER(255),
         },
-        uuid: {
-            type: DataTypes.STRING(36),
-            allowNull: false,
-            unique: true,
-        },
         customer_id:{
-            type:DataTypes.UUID,
+            type:DataTypes.STRING(50),
             allowNull:false,
         },
         description: {
             type: DataTypes.TEXT,
-            allowNull: false,
+            allowNull: true,
         },
 
-        image_name:{
-            type: DataTypes.STRING(20),
-            allowNull: false,
+        image_minio_url:{
+            type: DataTypes.TEXT,
+            allowNull: true,
         },
         
-        status: {
+        is_active: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: true,
+        },
+        is_deleted: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: false,
         },
         district_name: {
             type: DataTypes.STRING(50),
             allowNull: true,
         },
+        remarks: {
+            type: DataTypes.STRING(50),
+            allowNull: true,
+        },
 
-        created_at: {
+
+        created_date: {
             type: DataTypes.BIGINT,
         },
         updated_at: {
@@ -52,3 +57,4 @@ down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable("balance_humanity_blog_post");
 },
 };
+

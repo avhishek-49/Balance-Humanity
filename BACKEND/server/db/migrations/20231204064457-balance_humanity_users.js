@@ -33,6 +33,11 @@ up: async (queryInterface, Sequelize) => {
             allowNull: true,
             
         },
+        district_id: {
+            type: DataTypes.STRING(50),
+            allowNull: true,
+            
+        },
         password: {
             type: DataTypes.STRING(200),
             allowNull: false,

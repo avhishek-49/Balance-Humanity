@@ -6,7 +6,7 @@ const getImage = require("../../modules/minio_image/get_image.js");
 const getImageUrl = require("../../modules/minio_image/get_image_url.js");
 const fetchImageUrl = require("../../modules/minio_image/get_presigned_image.js");
 const removeBucket = require("../../modules/minio_image/remove_bucket.js");
-
+const customerPost = require("../../modules/minio_image/create_customer_post");
 let multer = require("multer");
 const {protect, authorization} = require("../balance_humanity_unboard/index.js");
 const getAllImage = require("../../modules/minio_image/get_all_image.js");
@@ -22,6 +22,16 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage: storage});
 
+
+
+//customer post and enhancements
+
+router.post("/create", upload.single("file"), protect, customerPost);
+
+
+
+
+// usable functions
 router.post("/upload", upload.single("file"), protect, uploadImage);
 router.get("/get", protect, getImage);
 router.get("/get-all", protect, getAllImage);

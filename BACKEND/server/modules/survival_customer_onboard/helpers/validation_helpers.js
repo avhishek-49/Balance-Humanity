@@ -15,7 +15,8 @@ module.exports = {
                 response.message = "Invalid mobileNumber format";
             } else if (!call.password) {
                 response.message = "password is required";
-            } else {
+            }
+            else {
                 response.status = httpStatus.OK;
                 response.message = "Validation Success";
             }

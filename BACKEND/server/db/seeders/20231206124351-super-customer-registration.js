@@ -28,6 +28,7 @@ up: async (queryInterface, Sequelize) => {
                     created_by: 1,
                     login_date: new Date().getTime(),
                     created_date: new Date().getTime(),
+                    district_id:"3"
                 },
 
                 {
@@ -49,6 +50,7 @@ up: async (queryInterface, Sequelize) => {
                     created_by: 1,
                     login_date: new Date().getTime(),
                     created_date: new Date().getTime(),
+                    district_id:"71"
                 },
 
                 {
@@ -70,6 +72,7 @@ up: async (queryInterface, Sequelize) => {
                     created_by: 1,
                     login_date: new Date().getTime(),
                     created_date: new Date().getTime(),
+                    district_id:"3"
                 },
             ],
             {}

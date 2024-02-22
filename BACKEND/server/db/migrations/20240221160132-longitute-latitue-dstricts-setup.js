@@ -4,19 +4,21 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('latitude_longitude_district_info', {
       id: {
-        allowNull: false,
-        autoIncrement: true,
+    
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.BIGINT
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull:true
       },
       latitude: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull:true
       },
       longitude: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull:true
       }
     });
   },

@@ -18,6 +18,7 @@ module.exports = {
                       status: true,
                       created_at: Date.now(),
                       updated_at: Date.now(),
+                      
                     },
                     {
                       id: 2,
