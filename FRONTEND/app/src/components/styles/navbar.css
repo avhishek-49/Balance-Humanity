@@ -9,3 +9,8 @@
 .custom-btn-campaign {
   background-color: #ffa9a1;
 }
+
+.nav-item {
+  display: flex;
+  align-items: center;
+}

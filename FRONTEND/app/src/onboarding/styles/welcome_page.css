@@ -14,7 +14,7 @@
 }
 .custom-card {
   flex-direction: row !important;
-  margin: 3rem;
+  margin: 3rem 0.5rem;
   background-color: #ffa9a1;
 }
 
