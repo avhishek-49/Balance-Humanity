@@ -1,14 +1,14 @@
-import React, { useState, useRef, useEffect } from 'react';
-import './otp.css';
+import React, { useState, useRef, useEffect } from "react";
+import NavBar from "../components/Navbar";
 
 const WelcomePage = () => {
-  
-
   return (
-    <div className="otp-container">
-      
-<h1> WELCOME TO BALANCE HUMANITY</h1>
-    </div>
+    // <div className="container-fluid">
+    <>
+      <NavBar />
+      <h1> WELCOME TO BALANCE HUMANITY</h1>
+      {/* </div> */}
+    </>
   );
 };
 
