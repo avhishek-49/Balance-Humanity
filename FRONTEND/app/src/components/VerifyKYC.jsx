@@ -1,48 +1,57 @@
 import React, { useState } from "react";
 import axios from "axios"; // Add this import statement
-import { useNavigate } from "react-router-dom";
 import "./styles/main_style.css";
 import "../onboarding/styles/sign_up.css";
-import showPopup from "../helpers/pop_up_notification";
 import Layout from "./Layout";
 
-const CampaignForm = () => {
+const VerifyKyc = () => {
   const [formData, setFormData] = useState({
-    title: "",
-    description: "",
+    fullname: "",
     accNumber: "",
-    image: "",
+    description: "",
+    citizenshipID: "",
+    district: "",
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    console.log({ name, value });
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
   };
 
-  const handlePostCampaign = async () => {
-    console.log("Post campaign");
+  const handleVerifyKyc = async () => {
+    console.log("Verified");
   };
 
   return (
     <Layout>
       <div className="container main-section-wrapper">
-        <h1>Start a Campaign !</h1>
+        <h1>Please verify your details!</h1>
         <div className="section-form">
           <form id="form">
             <div className="">
-              <label htmlFor="title">Title</label>
+              <label htmlFor="fullname">Full Name</label>
               <input
                 type="text"
-                name="title"
-                value={formData.title}
+                name="fullname"
+                value={formData.fullname}
                 onChange={handleChange}
               />
             </div>
             <div className="">
-              <label htmlFor="description">Description</label>
+              <label htmlFor="accNumber">Account Number</label>
+              <input
+                type="text"
+                name="accNumber"
+                value={formData.accNumber}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="">
+              <label htmlFor="description">Bio/Description</label>
               <input
                 type="text"
                 name="description"
@@ -51,26 +60,26 @@ const CampaignForm = () => {
               />
             </div>
             <div className="">
-              <label htmlFor="accNumber">Acoount Number</label>
+              <label htmlFor="citizenshipID">Citizenship ID</label>
               <input
                 type="text"
-                name="accNumber"
-                value={formData.accNumber}
+                name="citizenshipID"
+                value={formData.citizenshipID}
                 onChange={handleChange}
               />
             </div>
-            <div>
-              <label htmlFor="accNumber">Upload Image</label>
+            <div className="">
+              <label htmlFor="district">District</label>
               <input
-                type="file"
-                name="image"
-                value={formData.image}
+                type="text"
+                name="district"
+                value={formData.district}
                 onChange={handleChange}
               />
             </div>
             <div>
-              <button type="button" id="btn" onClick={handlePostCampaign}>
-                Post
+              <button type="button" id="btn" onClick={handleVerifyKyc}>
+                Verify
               </button>
             </div>
           </form>
@@ -80,4 +89,4 @@ const CampaignForm = () => {
   );
 };
 
-export default CampaignForm;
+export default VerifyKyc;

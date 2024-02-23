@@ -39,6 +39,13 @@ const NavBar = () => {
                 </button>
               </a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/verify-kyc">
+                <button class="btn custom-btn-campaign" type="submit">
+                  Verify KYC
+                </button>
+              </a>
+            </li>
           </ul>
           <div>
             <button class="btn btn-danger" type="submit">

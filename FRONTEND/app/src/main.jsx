@@ -6,6 +6,9 @@ import SignUpApplication from "./onboarding/sign_up.jsx"; // Ensure the correct 
 import OtpCustomer from "./onboarding/otp.jsx";
 import WelcomePage from "./onboarding/welcome_page.jsx";
 import CampaignForm from "./components/CampaignForm.jsx";
+import DonateForm from "./components/DonateForm.jsx";
+import VerifyKyc from "./components/VerifyKYC.jsx";
+import Profile from "./components/Profile.jsx";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +30,18 @@ const router = createBrowserRouter([
   {
     path: "/start-campaign",
     element: <CampaignForm />,
+  },
+  {
+    path: "/donate",
+    element: <DonateForm />,
+  },
+  {
+    path: "/verify-kyc",
+    element: <VerifyKyc />,
+  },
+  {
+    path: "/profile",
+    element: <Profile />,
   },
 ]);
 
