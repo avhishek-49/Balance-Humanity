@@ -1,0 +1,17 @@
+.custom-navbar-bg {
+  background-color: #f2796e !important;
+  padding: 0.2rem 1rem !important;
+}
+.navbar-brand {
+  font-size: 25px;
+}
+
+.custom-btn-campaign {
+  background-color: #ffa9a1;
+  border-color: #dc3545;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+}

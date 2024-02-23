@@ -1,0 +1,206 @@
+/* Resetting default styles of the browser */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+.main-wrapper {
+  display: flex;
+  flex-direction: row;
+  padding: 0 !important;
+}
+
+.main-wrapper .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: #f2796e;
+  width: 55%;
+  min-height: 100vh;
+  padding: 10px 20px;
+}
+
+.main-wrapper .content .image {
+  background-image: url("https://assets.codepen.io/1358848/illustration.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  height: 65%;
+}
+
+.main-wrapper .text {
+  text-align: center;
+  color: white;
+  font-size: 18px;
+}
+
+/* Style rules for form section */
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 400px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 50px;
+  width: 45%;
+  max-width: none;
+}
+
+.userIconClass {
+  display: block;
+  position: absolute;
+  transform: translate(25%, 40%);
+}
+.logo {
+  font-size: 24px;
+  color: white;
+  font-weight: bolder;
+}
+
+form .btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+form .btn .btn-1,
+form .btn .btn-2 {
+  padding: 10px 5px;
+  width: 100%;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #c4c4c4;
+  border-radius: 8px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+form .btn .btn-2 {
+  background-color: #4f70b5;
+  color: white;
+}
+
+form .or {
+  text-align: center;
+}
+
+form .question {
+  font-size: 15px;
+}
+
+form span {
+  color: #f2796e;
+  cursor: pointer;
+}
+
+form .title {
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+form div {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+form div i {
+  position: absolute;
+  padding: 10px;
+}
+
+form div .failure-icon,
+form div .error {
+  color: red;
+}
+
+form div .success-icon {
+  color: green;
+}
+
+form div .error {
+  font-size: 14.5px;
+  margin-top: 5px;
+}
+
+form div .success-icon,
+form div .failure-icon {
+  right: 0;
+  opacity: 0;
+}
+
+form div label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+form div input {
+  width: 100%;
+  height: 40px;
+  border-radius: 8px;
+  outline: none;
+  border: 2px solid #c4c4c4;
+  padding: 0 30px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+form div input:focus {
+  border: 2px solid #f2796e;
+}
+
+form button {
+  margin-top: 15px;
+  width: 100%;
+  height: 45px;
+  background-color: #f2796e;
+  border: 2px solid #f2796e;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.1s ease;
+}
+
+form button:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 425px) {
+  form {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 900px) {
+  .main-wrapper {
+    flex-direction: column;
+  }
+
+  .main-wrapper .content {
+    width: 100%;
+  }
+
+  .main-wrapper .content .image {
+    height: 70vh;
+  }
+
+  form,
+  .main-wrapper .content {
+    width: 100%;
+  }
+
+  form .social .btn {
+    flex-direction: column;
+  }
+}
