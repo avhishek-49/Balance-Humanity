@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-import NavBar from "../components/Navbar";
 import "./styles/welcome_page.css";
 import Layout from "../components/Layout";
 
@@ -38,9 +37,11 @@ const WelcomePage = () => {
                     <h5 class="card-title">{item.title}</h5>
                     <p class="card-text">{item.description}</p>
                     <p class="card-text">
-                      <button class="btn btn-success" type="submit">
-                        Donate Now
-                      </button>
+                      <a href="/donate">
+                        <button class="btn btn-success" type="submit">
+                          Donate Now
+                        </button>
+                      </a>
                     </p>
                   </div>
                 </div>
