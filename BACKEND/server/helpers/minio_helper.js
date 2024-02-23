@@ -417,6 +417,48 @@ minioHelper.uploadAndGetPublicLink = async (uploadBucket, file) => {
     });
 };
 
+
+minioHelper.uploadToSpecificBucket = async (bucketName, file) => {
+    let response = {status: httpStatus.INTERNAL_SERVER_ERROR, message: `File upload failed.`};
+    return new Promise((resolve, reject) => {
+        let fileStream = fs.readFileSync(file.path);
+        let fileExtension = file.originalname.split(".")[1].toLowerCase();
+        let mimeType = `image/${fileExtension}`;
+        let fileName = `${uuidv4()}.${fileExtension}`; // Generating a unique filename
+
+        let metaData = {
+            "Content-Type": mimeType,
+        };
+
+        fs.stat(file.path, function (statError, stats) {
+            if (statError) {
+                resolve(response);
+            }
+
+            minioClient.putObject(
+                bucketName,
+                fileName,
+                fileStream,
+                stats.size,
+                metaData,
+                function (uploadingError, etag) {
+                    if (uploadingError) {
+                        resolve(response);
+                    }
+
+                    let data = {
+                        url: `${process.env.MINIO_HOST}/${bucketName}/${fileName}`,
+                        info: {...etag, fileName},
+                    };
+                    response = {status: 200, data};
+                    resolve(response);
+                }
+            );
+        });
+    });
+};
+
+
 })(module.exports);
 
 // hint for image upload in minio

@@ -2,19 +2,19 @@
 let minioHelper = require("../../helpers/minio_helper");
 const httpStatus = require("http-status");
 const mysqlHelper=require("./../../helpers/database_helper");
-
+const dotenv = require("dotenv");
+dotenv.config()
 let uploadImage = async (req, res) => {
     // let bucketName = process.env.BUCKET_NAME;
-    let bucketName = req.body.user.uuid.toLowerCase();
-
-    let image = req.file;
+    let bucketName = "imageshumanity"
+        let image = req.file;
     let bucketExists = await minioHelper.bucketExists(bucketName);
     if (!bucketExists.status) {
         let bucketName = await minioHelper.makeBucket(bucketName);
     }
 
     try {
-        let uploadImage = await minioHelper.uploadAndGetPublicLink(bucketName, image);
+        let uploadImage = await minioHelper.uploadToSpecificBucket(bucketName, image);
         if (uploadImage.status == 200) {
 
             let userInfo = await mysqlHelper.format(`select  * from db_balance_humanity.balance_humanity_users where uuid ="${req.body.user.uuid}"`);
@@ -27,7 +27,7 @@ let uploadImage = async (req, res) => {
                 {
                     customer_id:req.body.user.uuid,
                     description:req.body.description,
-                    image_minio_url:uploadImage.data.url,
+                    image_minio_url:`http://127.0.0.1:9000/${bucketName}/${uploadImage.data.info.fileName}`,
                     remarks:"smudge",
                     is_active:1,
                     is_deleted:0,

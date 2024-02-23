@@ -10,6 +10,7 @@ const customerPost = require("../../modules/minio_image/create_customer_post");
 let multer = require("multer");
 const {protect, authorization} = require("../balance_humanity_unboard/index.js");
 const getAllImage = require("../../modules/minio_image/get_all_image.js");
+const getCustomerPost = require("../../modules/minio_image/get_my_post_customer.js");
 
 const storage = multer.diskStorage({
     destination: function (req, file, callback) {
@@ -27,7 +28,7 @@ const upload = multer({storage: storage});
 //customer post and enhancements
 
 router.post("/create", upload.single("file"), protect, customerPost);
-
+router.get("/get-my-post",  protect, getCustomerPost);
 
 
 

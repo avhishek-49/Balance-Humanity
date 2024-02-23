@@ -31,7 +31,7 @@ const {
 } = require("../../modules/customer_post/methods/index.js");
 
 // Define routes
-router.post("/create", protect, upload.single("image"), createCustomerPost); // Ensure field name matches your form
+router.post("/create", protect, createCustomerPost); // Ensure field name matches your form
 router.get("/get-me", protect, getMeCustomerPost);
 router.get("/get-all", protect, readAllCustomerPost);
 router.put("/update", protect, updateCustomerPost);
