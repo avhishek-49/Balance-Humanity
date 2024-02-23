@@ -1,9 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react';
-import './otp.css';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useRef, useEffect } from "react";
+import "./styles/otp.css";
+import { useNavigate } from "react-router-dom";
 
 const OtpCustomer = () => {
-  const [otp, setOtp] = useState(['', '', '', '', '', '']);
+  const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const [secondsLeft, setSecondsLeft] = useState(60); // Change as needed
   const inputsRef = useRef([]);
   const navigate = useNavigate(); // Add useNavigate hook
@@ -22,24 +22,24 @@ const OtpCustomer = () => {
       const newOtp = [...otp];
       newOtp[index] = value;
       setOtp(newOtp);
-      if (index < 5 && value !== '') {
+      if (index < 5 && value !== "") {
         inputsRef.current[index + 1].focus();
       }
     }
   };
 
   const handleKeyDown = (index, e) => {
-    if (e.key === 'Backspace' && index > 0 && otp[index] === '') {
+    if (e.key === "Backspace" && index > 0 && otp[index] === "") {
       inputsRef.current[index - 1].focus();
     }
   };
 
   const handleSubmit = async () => {
-    const enteredOtp = otp.join('');
-    console.log('Submitting OTP:', enteredOtp);
-    setOtp(['', '', '', '', '', '']);
+    const enteredOtp = otp.join("");
+    console.log("Submitting OTP:", enteredOtp);
+    setOtp(["", "", "", "", "", ""]);
     inputsRef.current[0].focus();
-    navigate('/home'); // Navigate to the home route after submitting OTP
+    navigate("/home"); // Navigate to the home route after submitting OTP
   };
 
   return (
