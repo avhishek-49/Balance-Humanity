@@ -4,7 +4,7 @@ import "./styles/navbar.css";
 const NavBar = () => {
   return (
     <>
-      <nav class="navbar navbar-expand-lg navbar-light custom-navbar-bg">
+      <nav class="navbar sticky-top navbar-expand-lg navbar-light custom-navbar-bg">
         <a class="navbar-brand" href="/home">
           BH
         </a>
@@ -33,9 +33,11 @@ const NavBar = () => {
               </a>
             </li>
             <li class="nav-item">
-              <button class="btn custom-btn-campaign" type="submit">
-                Start Campaign
-              </button>
+              <a class="nav-link" href="/start-campaign">
+                <button class="btn custom-btn-campaign" type="submit">
+                  Start Campaign
+                </button>
+              </a>
             </li>
           </ul>
           <div>
