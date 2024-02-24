@@ -13,11 +13,17 @@
   line-height: 1.5;
 }
 .custom-card {
-  flex-direction: row !important;
+  flex-direction: column;
   margin: 3rem 0.5rem;
-  background-color: #ffbeb8;
+  background-color: #ffd7d3;
 }
 
 .custom-card .card-img {
   width: 30%;
+  height: fit-content;
+  padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+}
+
+.custom-card-content {
+  display: flex;
 }
