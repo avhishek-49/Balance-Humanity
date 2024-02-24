@@ -14,7 +14,8 @@ authorization,
 protect,
 getDistrictDropDown,
 loadBalance,
-transaction
+transaction,
+getProfileInformation
 } = require("./index");
 (() => {
 //unboarding customers
@@ -27,6 +28,10 @@ router.get("/get-customer", protect, authorization(["superCustomer"]), getCustom
 //balance load and uload part
 router.post("/load-balance", protect, loadBalance);
 router.post("/transaction", protect, transaction);
+
+//get profile information
+router.get("/get-profile-information",protect, getProfileInformation);
+
 
 
 //kyc part

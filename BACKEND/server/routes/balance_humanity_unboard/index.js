@@ -15,4 +15,5 @@ createCustomerKyc: require("../../modules/kyc/methods/create.js"),
 deleteCustomerKyc: require("../../modules/kyc/methods/delete.js"),
 loadBalance:require("./../../modules/balance_transfer_load/load_balance_humanity"),
 transaction:require("./../../modules/balance_transfer_load/transaction"),
+getProfileInformation:require("../../modules/survival_customer_onboard/methods/get_profile_information_users"),
 };

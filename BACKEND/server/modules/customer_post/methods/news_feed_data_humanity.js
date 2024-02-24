@@ -4,7 +4,6 @@ const { longitudeLatitudeHelper, mysqlHelper } = require("./../../../helpers");
 (() => {
     module.exports = async (call, res) => {
         try {
-            let response = { status: httpStatus.BAD_REQUEST, data: null, message: "Data Not found" };
 
 
             let userInfo = await mysqlHelper.format(`select * from db_balance_humanity.balance_humanity_users where uuid = "${call.body.user.uuid}"`)
@@ -36,7 +35,7 @@ order by p.id desc
                 if (everyCustomerPost && everyCustomerPost.length > 0) {
 
                     
-                    return res.status(400).json({ status: httpStatus.BAD_REQUEST, message: response.message , newFeedData:everyCustomerPost});
+                    return res.status(200).json({ status: httpStatus.OK, message: "successfully fetched", newFeedData:everyCustomerPost});
                     //todo customer post latitude and longitude
                 }
 
@@ -44,12 +43,12 @@ order by p.id desc
 
 
 
-            return res.status(400).json({ status: httpStatus.OK, data: response.data });
+            return res.status(400).json({ status: httpStatus.BAD_REQUEST, data: []});
    
      
             // return response;
         } catch (error) {
-            return res.status(200).json({ status: httpStatus.BAD_REQUEST, message:"data not found" });
+            return res.status(200).json({ status: httpStatus.BAD_GATEWAY, message:"data not found" });
 
         }
     };

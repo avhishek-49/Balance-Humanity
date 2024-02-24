@@ -14,6 +14,55 @@ const { mysqlHelper } = require("../../helpers");
 
             }
 
+            let victimValidation = await mysqlHelper.format(`
+            SELECT
+            bu.uuid,
+            concat(bu.first_name, " ", bu.last_name) as fullName,
+            bu.email,
+            bu.mobile_number,
+            bu.profile_picture,
+            d.name,
+            CASE
+                WHEN bu.customer_type = 1 THEN 'NormalCustomer'
+                WHEN bu.customer_type = 2 THEN 'VictimCustomer'
+                WHEN bu.customer_type = 3 THEN 'SuperCustomer'
+                ELSE NULL
+            END AS customer_type,
+            CASE
+                WHEN ai.amount IS NULL THEN '0.00'
+                ELSE ai.amount
+            END AS amount,
+              CASE
+                WHEN ai.account_number IS NULL THEN 'N/A'
+                ELSE ai.account_number
+            END AS account_number
+        
+        FROM
+            db_balance_humanity.balance_humanity_users bu
+        LEFT JOIN
+            db_balance_humanity.customer_account_information ai ON ai.customer_id = bu.id
+        
+        left join db_balance_humanity.latitude_longitude_district_info d on bu.district_id = d.id
+        WHERE
+           ai.account_number ="${call.body.toAccountNumber}"`);
+
+           let [victimValidationResult] = await mysqlHelper.query(victimValidation);
+
+           if(victimValidationResult && victimValidationResult.length >0)
+           {
+
+            if(victimValidationResult[0].customer_type == "NormalCustomer")
+            {
+                return res.status(200).json({ status: httpStatus.BAD_REQUEST, message: "Verify Kyc of victim to proceed transctions!" });
+  
+            }
+            else if(victimValidationResult[0].fullName !=call.body.accountName)
+            {
+                return res.status(200).json({ status: httpStatus.BAD_REQUEST, message: "account name doesnt matched!" });
+  
+            }
+           }
+
             let userInfo = await mysqlHelper.format(`select * from db_balance_humanity.balance_humanity_users where uuid = "${call.body.user.uuid}"`)
             let [userResult] = await mysqlHelper.query(userInfo);
 
