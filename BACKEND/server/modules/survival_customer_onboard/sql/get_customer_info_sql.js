@@ -10,14 +10,14 @@
 
             // let response = { status: httpStatus.BAD_REQUEST, message: "Data Not found" }
 
-            let basequery = `SELECT uuid, customer_pin, password,email,mobile_number,
-case when customer_type= 1 then "NormalCustomer"
-when customer_type = 2 then "VictimCustomer"
-when customer_type = 3 then "superCustomer" 
-end as customer_type 
+            let basequery = `SELECT uuid, customer_pin, password,email,mobile_number,profile_picture,
+                          case when customer_type= 1 then "NormalCustomer"
+                          when customer_type = 2 then "VictimCustomer"
+                          when customer_type = 3 then "superCustomer" 
+                                    end as customer_type 
 
 
-    FROM db_balance_humanity.balance_humanity_users WHERE true `;
+       FROM db_balance_humanity.balance_humanity_users WHERE true `;
 
             let paramsQuery = "";
 
