@@ -12,15 +12,18 @@ getCustomerInfoForKyc,
 deleteCustomerKyc,
 authorization,
 protect,
+getDistrictDropDown
 } = require("./index");
 (() => {
 //unboarding customers
 router.post("/login", login);
 router.post("/register", registerBalanceHumanity);
 router.post("/forgot-password", protect, forgotPassword);
-
+router.get("/get-district_dropdown", getDistrictDropDown);
 router.get("/get-customer", protect, authorization(["superCustomer"]), getCustomerInfo);
 
+
+//kyc part
 router.delete("/delete-customer-kyc", protect, authorization(["superCustomer"]), deleteCustomerKyc);
 router.get("/get-customer-kyc", protect, authorization(["superCustomer"]), getCustomerInfoForKyc);
 router.put("/verify-customer-kyc", protect, authorization(["superCustomer"]), verifyCustomerKyc);
