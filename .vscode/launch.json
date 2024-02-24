@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "nodejs",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/BACKEND/server/server.js",
+            "runtimeExecutable": "/usr/local/bin/node"
+        }
+    ]
+}
+

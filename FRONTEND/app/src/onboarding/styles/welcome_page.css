@@ -1,0 +1,29 @@
+.main-page-wrapper {
+  padding: 0 !important;
+}
+.main-page-banner {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
+}
+.main-page-banner h1 {
+  text-align: center;
+  line-height: 1.5;
+}
+.custom-card {
+  flex-direction: column;
+  margin: 3rem 0.5rem;
+  background-color: #ffd7d3;
+}
+
+.custom-card .card-img {
+  width: 30%;
+  height: fit-content;
+  padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+}
+
+.custom-card-content {
+  display: flex;
+}
