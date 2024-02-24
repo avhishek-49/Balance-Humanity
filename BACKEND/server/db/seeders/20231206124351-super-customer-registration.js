@@ -29,7 +29,7 @@ up: async (queryInterface, Sequelize) => {
                     login_date: new Date().getTime(),
                     created_date: new Date().getTime(),
                     district_id:"3",
-                    profile_picture:""
+                    profile_picture:"http://127.0.0.1:9000/imageshumanity/36736717-317d-4fd6-8f6c-474dae3e45ca.jpg"
                 },
 
                 {

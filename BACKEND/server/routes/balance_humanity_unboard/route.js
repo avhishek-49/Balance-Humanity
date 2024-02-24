@@ -12,7 +12,9 @@ getCustomerInfoForKyc,
 deleteCustomerKyc,
 authorization,
 protect,
-getDistrictDropDown
+getDistrictDropDown,
+loadBalance,
+transaction
 } = require("./index");
 (() => {
 //unboarding customers
@@ -21,6 +23,10 @@ router.post("/register", registerBalanceHumanity);
 router.post("/forgot-password", protect, forgotPassword);
 router.get("/get-district_dropdown", getDistrictDropDown);
 router.get("/get-customer", protect, authorization(["superCustomer"]), getCustomerInfo);
+
+//balance load and uload part
+router.post("/load-balance", protect, loadBalance);
+router.post("/transaction", protect, transaction);
 
 
 //kyc part

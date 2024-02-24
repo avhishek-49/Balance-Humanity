@@ -15,6 +15,11 @@ let uploadImage = async (req, res) => {
 
     try {
         let uploadImage = await minioHelper.uploadToSpecificBucket(bucketName, image);
+        if(uploadImage.status ==500)
+        {
+            return res.status(500).json({message:"Minio connection failed! failed to upload"});
+
+        }
         if (uploadImage.status == 200) {
 
             let userInfo = await mysqlHelper.format(`select  * from db_balance_humanity.balance_humanity_users where uuid ="${req.body.user.uuid}"`);

@@ -13,4 +13,6 @@ getCustomerInfoForKyc: require("../../modules/kyc/methods/read.js"),
 verifyCustomerKyc: require("../../modules/kyc/methods/update.js"),
 createCustomerKyc: require("../../modules/kyc/methods/create.js"),
 deleteCustomerKyc: require("../../modules/kyc/methods/delete.js"),
+loadBalance:require("./../../modules/balance_transfer_load/load_balance_humanity"),
+transaction:require("./../../modules/balance_transfer_load/transaction"),
 };
