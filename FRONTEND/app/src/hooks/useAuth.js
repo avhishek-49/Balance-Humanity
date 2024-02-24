@@ -60,7 +60,6 @@ const useAuth = () => {
   const useFetchProfile = () => useQuery([QUERIES.myProfile], getProfile);
 
   const initialValues = {
-    otp: "",
     firstName: "",
     lastName: "",
     email: "",
@@ -88,9 +87,16 @@ const useAuth = () => {
   });
 
   const { mutate } = useMutation((body) => register(body), {
-    onSuccess: () => {
-      toast.success("Account registered");
-      formik.resetForm();
+    onSuccess: (_, values) => {
+      if (location.pathname === "/submit") {
+        toast.success("OTP sent");
+        formik.resetForm();
+        localStorage.setItem("customer", JSON.stringify(formik.values));
+        navigate("/otp");
+      } else {
+        toast.success("Account registered");
+        navigate(-2);
+      }
     },
     onError: (err) => {
       formik.setSubmitting(false);
@@ -109,7 +115,7 @@ const useAuth = () => {
     onSubmit: (values) => mutate(values),
   });
 
-  return { formik, useLogin, useFetchProfile, useForgetPassword };
+  return { formik, useLogin, useFetchProfile, useForgetPassword, mutate };
 };
 
 export default useAuth;

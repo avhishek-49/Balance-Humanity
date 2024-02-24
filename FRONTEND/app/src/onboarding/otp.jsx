@@ -1,12 +1,26 @@
-import React, { useState, useRef, useEffect } from "react";
-import "./styles/otp.css";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
+import "./styles/otp.css";
+
+
 
 const OtpCustomer = () => {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const [secondsLeft, setSecondsLeft] = useState(60); // Change as needed
   const inputsRef = useRef([]);
   const navigate = useNavigate(); // Add useNavigate hook
+  const [data, setData] = useState({})
+
+    const {mutate} = useAuth()
+
+
+  useEffect(() => {
+    const temp = JSON.parse(localStorage.getItem('customer'))
+
+    setData(temp)
+  }, [])
+
 
   useEffect(() => {
     if (secondsLeft > 0) {
@@ -34,12 +48,18 @@ const OtpCustomer = () => {
     }
   };
 
+
   const handleSubmit = async () => {
     const enteredOtp = otp.join("");
     console.log("Submitting OTP:", enteredOtp);
     setOtp(["", "", "", "", "", ""]);
-    inputsRef.current[0].focus();
-    navigate("/home"); // Navigate to the home route after submitting OTP
+
+    let temp = {...data, otp: enteredOtp}
+
+    console.log(temp)
+
+    mutate({...data, otp: enteredOtp})
+
   };
 
   return (

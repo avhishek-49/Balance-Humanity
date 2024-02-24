@@ -207,18 +207,7 @@ const SignUpApplication = () => {
                                                   {errors?.customerPin && <text style={{color: 'red', marginTop: 2}}>{errors?.customerPin}</text>}
 
         </div>
-                <div className="">
-          <label htmlFor="otp">OTP</label>
-          <i className="far fa-envelope"></i>
-          <FaUser size={20} className="userIconClass"></FaUser>
-          <input
-            name="otp"
-            value={values.otp}
-            onChange={handleChange}
-          />
-                                        {errors?.otp && <text style={{color: 'red', marginTop: 2}}>{errors?.otp}</text>}
 
-        </div>
                     <div className="">
               <label htmlFor="districtId">District</label>
               <select value={values.districtId} style={{width: '100%'}} onChange={(e) => setFieldValue('districtId', e.target.value)}>
