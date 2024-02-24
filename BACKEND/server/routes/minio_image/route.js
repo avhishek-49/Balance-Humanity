@@ -12,6 +12,7 @@ const {protect, authorization} = require("../balance_humanity_unboard/index.js")
 const getAllImage = require("../../modules/minio_image/get_all_image.js");
 const getCustomerPost = require("../../modules/minio_image/get_my_post_customer.js");
 const setProfilePicture = require("../../modules/minio_image/update_profile_picture.js");
+const setVictimKyc = require("../../modules/minio_image/set_up_kyc.js");
 
 const storage = multer.diskStorage({
     destination: function (req, file, callback) {
@@ -32,6 +33,9 @@ router.post("/create", upload.single("file"), protect, customerPost);
 router.get("/get-my-post",  protect, getCustomerPost);
 router.post("/upload-profile-picture", upload.single("file"), protect, setProfilePicture);
 
+
+//kyc setup
+router.post("/setup-victim-kyc", upload.single("file"), protect, setVictimKyc);
 
 
 // usable functions
