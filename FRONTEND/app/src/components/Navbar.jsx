@@ -4,12 +4,12 @@ import "./styles/navbar.css";
 const NavBar = () => {
   return (
     <>
-      <nav class="navbar sticky-top navbar-expand-lg navbar-light custom-navbar-bg">
-        <a class="navbar-brand" href="/home">
+      <nav className="navbar sticky-top navbar-expand-lg navbar-light custom-navbar-bg">
+        <a className="navbar-brand" href="/home">
           BH
         </a>
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-toggle="collapse"
           data-target="#navbarSupportedContent"
@@ -17,38 +17,38 @@ const NavBar = () => {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="/home">
-                Home <span class="sr-only">(current)</span>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav mr-auto">
+            <li className="nav-item active">
+              <a className="nav-link" href="/home">
+                Home <span className="sr-only">(current)</span>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/profile">
+            <li className="nav-item">
+              <a className="nav-link" href="/profile">
                 My Profile
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/start-campaign">
-                <button class="btn custom-btn-campaign" type="submit">
+            <li className="nav-item">
+              <a className="nav-link" href="/start-campaign">
+                <button className="btn custom-btn-campaign" type="submit">
                   Start Campaign
                 </button>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/verify-kyc">
-                <button class="btn custom-btn-campaign" type="submit">
+            <li className="nav-item">
+              <a className="nav-link" href="/verify-kyc">
+                <button className="btn custom-btn-campaign" type="submit">
                   Verify KYC
                 </button>
               </a>
             </li>
           </ul>
           <div>
-            <button class="btn btn-danger" type="submit">
+            <button className="btn btn-danger" type="submit">
               Logout
             </button>
           </div>
